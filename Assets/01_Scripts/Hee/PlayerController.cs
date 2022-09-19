@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D raycast = Physics2D.BoxCast(col.bounds.center, 
             col.bounds.size, 0f, Vector2.down, 0.1f, layerMask);
 
+        
+
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
         if (raycast.collider != null)
