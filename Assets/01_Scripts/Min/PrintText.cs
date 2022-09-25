@@ -4,39 +4,28 @@ using UnityEngine;
 
 public class PrintText : MonoBehaviour
 {
-    public ScriptableObject textDatas;
-    string text;
+    public Ohno o;
+    private UIManager uIManager;
 
 
     private void Awake()
     {
-        //textDatas._list[].dataID;
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+    }
+
+    private void Update()
+    {
+        _PrintText();
     }
 
     public void _PrintText()
     {
-        //switch (textDatas._list[].dataID)
-        //{
-        //    case "오노조":
-        //        text = textDatas.text;
-        //        FindObjectOfType<UIManager>().TextPrint(text);
-        //        break;
-        //    case "려차":
-        //        text = textDatas.text;
-        //        FindObjectOfType<UIManager>().TextPrint(text);
-        //        break;
-        //    case "안형주":
-        //        text = textDatas.text;
-        //        FindObjectOfType<UIManager>().TextPrint(text);
-        //        break;
-        //    case "황원준":
-        //        text = textDatas.text;
-        //        FindObjectOfType<UIManager>().TextPrint(text);
-        //        break;
-        //    case "김성호":
-        //        text = textDatas.text;
-        //        FindObjectOfType<UIManager>().TextPrint(text);
-        //        break;
-        //}
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(o.textId == "Ohno")
+            {
+                uIManager.TextPrint(o.text);
+            }
+        }
     }
 }

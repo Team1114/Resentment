@@ -11,17 +11,16 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI realText;
-    TextDatas textDatas;
     
     private void Awake()
     {
         Instance = this;
-        //textDatas = GetComponent<TextDatas>();
         realText = GetComponent<TextMeshProUGUI>();
     }
 
     public void TextPrint(string text)
     {
+        Debug.Log(text);
         realText.text = text;
     }
 
