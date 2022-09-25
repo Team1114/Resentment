@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b19f4350735ad848b402450931c5a50, type: 3}
-  m_Name: Hyeongju
+  m_Script: {fileID: 11500000, guid: bda4a1d8edc9ead42b3c096ae3652ee3, type: 3}
+  m_Name: TestTextData
   m_EditorClassIdentifier: 
-  _textId: Hyeongju
-  _text: "\uC548\uD615\uC8FC \uB610 \uD53C\uD30C\uD558\uB098?"
+  _textId: "\uC624\uB178\uC870"
+  _text: "\uC624\uB178\uC870\uB2E4"

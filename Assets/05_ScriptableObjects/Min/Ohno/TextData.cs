@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Ohno", menuName = "ScriptableObject/Ohno")]
-public class Ohno : ScriptableObject
+[CreateAssetMenu(fileName = "TextData", menuName = "ScriptableObject/TextData")]
+public class TextData : ScriptableObject
 {
     [SerializeField]
     private string _textId;

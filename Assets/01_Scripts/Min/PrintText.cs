@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrintText : MonoBehaviour
 {
-    public Ohno o;
+    public TextData textData;
     private UIManager uIManager;
 
 
@@ -22,9 +22,9 @@ public class PrintText : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if(o.textId == "Ohno")
+            if(textData.textId == "Ohno")
             {
-                uIManager.TextPrint(o.text);
+                uIManager.TextPrint(textData.text);
             }
         }
     }
