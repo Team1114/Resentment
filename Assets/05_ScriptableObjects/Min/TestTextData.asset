@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda4a1d8edc9ead42b3c096ae3652ee3, type: 3}
   m_Name: TestTextData
   m_EditorClassIdentifier: 
-  _textId: "\uC624\uB178\uC870"
-  _text: "\uC624\uB178\uC870\uB2E4"
+  ID: Test
+  textDataList:
+  - textID: 1
+    text: "heesoo yoon\t"
+  - textID: 2
+    text: dongyeop kyung

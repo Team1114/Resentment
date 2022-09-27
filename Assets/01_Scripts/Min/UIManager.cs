@@ -8,20 +8,23 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-
-    [SerializeField]
-    TextMeshProUGUI realText;
+    public TextPanel textPanel;
     
     private void Awake()
     {
         Instance = this;
-        realText = GetComponent<TextMeshProUGUI>();
     }
 
-    public void TextPrint(string text)
+    public void TextManager(string id) // 매개변수로 text id 넣어주기 
     {
-        Debug.Log(text);
-        realText.text = text;
+        string textId = id;
+        if (FindNextText(textId) == "") return; // 들어있는 text 값이 공백이면 넘어감
+
+        textPanel.ShowTextPanel(FindNextText(textId));
     }
 
+    public string FindNextText(string id) 
+    {
+        return textPanel.textData.FindToDataID(id);
+    }
 }
