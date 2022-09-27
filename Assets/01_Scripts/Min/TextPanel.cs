@@ -15,6 +15,7 @@ public class TextPanel : MonoBehaviour
 
     private void Start()
     {
+        gameObject.SetActive(false);
         _tmp = GetComponent<TextMeshProUGUI>();
         OnSpaceKeyDown += UnShowTextPanel;
     }
@@ -31,9 +32,9 @@ public class TextPanel : MonoBehaviour
     {
         if (textPanelOn || nextText == "") return; // 패널이 보여지고 있거나 nextText 값이 공백이면 넘어감
 
+        gameObject.SetActive(true);
         textPanelOn = true;
         _tmp.text = nextText;
-        gameObject.SetActive(true);
     }
 
     public void UnShowTextPanel()
