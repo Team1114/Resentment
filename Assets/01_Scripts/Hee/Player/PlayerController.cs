@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     BoxCollider2D col;
     Rigidbody2D rb;
 
+    public bool isRight = true;
+
     #region 점프
     [Header("점프")]
-    public bool isJumping = false;
+    public bool isJumpping = false;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float jumpPower;
     public float canJump;
@@ -25,19 +27,21 @@ public class PlayerController : MonoBehaviour
     #region 대쉬
     [Header("대쉬")]
     public bool isDashing = false;
+    public bool canDash = true;
     public float dashDelayTime;
     #endregion
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
+        col = transform.GetComponentInChildren<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
     {
         Move();
+        DirectionCheck();
         JumpCheck();
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -50,19 +54,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Move()
+    void DirectionCheck()
     {
         Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
 
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y); //moveDir * speed;
-
         if (moveDir.x == 1)
         {
-            sprite.flipX = false;
+            isRight = true;
         }
         else if (moveDir.x == -1)
         {
-            sprite.flipX = true;
+            isRight = false;
+        }
+    }
+
+    void Move()
+    {
+        // Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y); //moveDir * speed;
+
+        if (isRight)
+        {
+            // sprite.flipX = false;
+            transform.localScale = new Vector3(1, 1, 0);
+        }
+        else if (isRight == false)
+        {
+            // sprite.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 0);
         }
     }
 
@@ -70,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         JumpCheck();
 
-        if (isJumping) return;
+        if (isJumpping) return;
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
@@ -82,27 +102,28 @@ public class PlayerController : MonoBehaviour
         // 애니메이션 코드 주석 상태 해제
         if (raycast.collider != null) // 바닥에 있을 때
         {
-            isJumping = false;
+            isJumpping = false;
             // anim.SetTrigger("isJump");
         }
         else // 떠 있을 때
         {
-            isJumping = true;
+            isJumpping = true;
             // anim.SetTrigger("isJump");
         }
     }
 
     void Dash()
     {
+        if (!canDash) return;
         if (isDashing) return;
 
         Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
 
-        if (moveDir.x == 1) // 오른쪽일 때
+        if (isRight) // 오른쪽일 때
         {
             StartCoroutine(DashCoroutine(1)); // 대시코루틴의 매개변수에 1을 넣어줌
         }
-        else if (moveDir.x == -1) // 왼쪽일 때
+        else if (isRight == false) // 왼쪽일 때
         {
             StartCoroutine(DashCoroutine(-1)); // 대시코루틴의 매개변수에 -1을 넣어줌
         }
@@ -110,9 +131,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashCoroutine(float rightAndleft)
     {
+        canDash = false;
         isDashing = true;
+
         transform.DOMoveX(transform.position.x + 2 * rightAndleft, 0.2f); // 매개변수의 값이 양수냐 음수냐에 따라 방향이 달라짐
-        yield return new WaitForSeconds(dashDelayTime);
+
+        yield return new WaitForSeconds(0.18f);
         isDashing = false;
+
+        yield return new WaitForSeconds(dashDelayTime);
+        canDash = true;
     }
 }
