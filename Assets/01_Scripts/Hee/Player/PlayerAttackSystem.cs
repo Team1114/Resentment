@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
@@ -10,21 +8,49 @@ public class PlayerAttackSystem : MonoBehaviour
     [SerializeField] private Vector2 boxSize;
     public GameObject windPrefab;
 
+    private bool canFireAttack = false;
+
     private void Awake()
     {
         _playerController = GetComponentInParent<PlayerController>();
     }
 
-    public void SwordMeleAttack()
+    public void SwordMeleAttack1()
     {
-        print("SwordMeleAttack");
+        print("SwordMeleAttack1");
 
         Collider2D collider = Physics2D.OverlapBox(SwordAttackBocPosition.position, boxSize, 0);
 
-        if(collider != null)
+        if (collider != null)
         {
-            if(collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
+            if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
         }
+    }
+
+    public void SwordMeleAttack2()
+    {
+        print("SwordMeleAttack2");
+
+        Collider2D collider = Physics2D.OverlapBox(SwordAttackBocPosition.position, boxSize, 0);
+
+        if (collider != null)
+        {
+            if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
+        }
+    }
+
+    public void SwordMeleAttack3()
+    {
+        print("SwordMeleAttack3");
+
+        Collider2D collider = Physics2D.OverlapBox(SwordAttackBocPosition.position, boxSize, 0);
+
+        if (collider != null)
+        {
+            if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
+        }
+
+        canFireAttack = true;
     }
 
     private void OnDrawGizmos()
@@ -37,6 +63,8 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         print("SwordFireAttack");
 
+        if (!canFireAttack) return;
+
         if (_playerController.isRight)
         {
             windPrefab.GetComponent<SwordWind>().isRight = true;
@@ -45,8 +73,10 @@ public class PlayerAttackSystem : MonoBehaviour
         {
             windPrefab.GetComponent<SwordWind>().isRight = false;
         }
-        windPrefab.transform.position = SwordAttackBocPosition.position;
 
+        windPrefab.transform.position = SwordAttackBocPosition.position;
         Instantiate(windPrefab);
+
+        canFireAttack = false;
     }
 }

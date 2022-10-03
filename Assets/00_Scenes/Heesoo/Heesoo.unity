@@ -912,6 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60011c2ebdf88e4db6980614f6a094f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRight: 1
   isJumpping: 0
   layerMask:
     serializedVersion: 2
@@ -940,7 +941,37 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 28883441}
         m_TargetAssemblyTypeName: PlayerAttackSystem, Assembly-CSharp
-        m_MethodName: SwordMeleAttack
+        m_MethodName: SwordMeleAttack1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SwordMeleAttackSecond:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 28883441}
+        m_TargetAssemblyTypeName: PlayerAttackSystem, Assembly-CSharp
+        m_MethodName: SwordMeleAttack2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SwordMeleAttackThird:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 28883441}
+        m_TargetAssemblyTypeName: PlayerAttackSystem, Assembly-CSharp
+        m_MethodName: SwordMeleAttack3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -980,6 +1011,9 @@ MonoBehaviour:
   InteractionEvent:
     m_PersistentCalls:
       m_Calls: []
+  noOfClicks: 0
+  lastClickedTime: 0
+  maxComboDelay: 0.8
   isMoving: 0
 --- !u!4 &765301533
 Transform:

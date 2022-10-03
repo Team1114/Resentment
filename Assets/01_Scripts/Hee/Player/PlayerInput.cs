@@ -10,6 +10,9 @@ public class PlayerInput : MonoBehaviour
     #region 이벤트
     [Header("AttackEvent")]
     public UnityEvent SwordMeleAttack; // 단검 근접 공격 - 마우스 좌클릭
+    public UnityEvent SwordMeleAttackSecond; // 단검 근접 공격 - 마우스 좌클릭 2번째 공격
+    public UnityEvent SwordMeleAttackThird; // 단검 근접 공격 - 마우스 좌클릭 3번째 공격
+
     public UnityEvent SwordFireAttack; // 단검 원거리 공격 - 마우스 우클릭 // 넉백 공격 칼바람
 
     public UnityEvent EDownSkill; // E 눌렀을 때 나오는 스킬
@@ -22,6 +25,10 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent InteractionEvent; // 상호작용 - F
     #endregion
 
+    public int noOfClicks = 0;
+    public float lastClickedTime = 0;
+    public float maxComboDelay = 0.8f;
+
     [SerializeField] private bool isMoving = false; // Dash 또는 Jump 하고 있는지
 
     private void Awake()
@@ -31,6 +38,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        if (Time.time - lastClickedTime > maxComboDelay) noOfClicks = 0;
         isMoving = MovingCheck();
 
         GetSwordMeleAttackInput();
@@ -66,7 +74,21 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) // 좌클릭
         {
-            SwordMeleAttack?.Invoke();
+            lastClickedTime = Time.time;
+            noOfClicks++;
+            if (noOfClicks == 1)
+            {
+                SwordMeleAttack?.Invoke();
+            }
+            else if (noOfClicks == 2)
+            {
+                SwordMeleAttackSecond?.Invoke();
+            }
+            else if (noOfClicks == 3)
+            {
+                SwordMeleAttackThird?.Invoke();
+                noOfClicks = 0;
+            }
         }
     }
 
