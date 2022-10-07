@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253950c8703578548b279c2d9d46685e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwordAttackBocPosition: {fileID: 609556298}
-  boxSize: {x: 2, y: 2}
+  NormalAttackBoxPosition: {fileID: 1815165717}
+  NormalAttackBoxSize: {x: 0, y: 0}
   windPrefab: {fileID: 8919095169513843153, guid: e912801fe905e8f4f953d175a689ceb9, type: 3}
 --- !u!1 &47678743
 GameObject:
@@ -383,6 +383,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &279197947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 279197948}
+  m_Layer: 7
+  m_Name: QSkillPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &279197948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279197947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.05, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 609556298}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &401401322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401401323}
+  m_Layer: 7
+  m_Name: ESkillPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &401401323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401401322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.05, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 609556298}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490542975
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,9 +716,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609556297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.75, y: -0.16, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1815165717}
+  - {fileID: 279197948}
+  - {fileID: 401401323}
   m_Father: {fileID: 765301533}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -936,6 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56cee04643a3684e92bdc55658eab3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   SwordMeleAttack:
     m_PersistentCalls:
       m_Calls:
@@ -998,23 +1062,67 @@ MonoBehaviour:
         m_CallState: 2
   EDownSkill:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 834631659}
+        m_TargetAssemblyTypeName: PlayerSkillSystem, Assembly-CSharp
+        m_MethodName: ESkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   QDownSKill:
     m_PersistentCalls:
-      m_Calls: []
-  RDownSKill:
-    m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 834631659}
+        m_TargetAssemblyTypeName: PlayerSkillSystem, Assembly-CSharp
+        m_MethodName: QSKill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ResentmentSkill:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 834631660}
+        m_TargetAssemblyTypeName: ResentmentSkill, Assembly-CSharp
+        m_MethodName: Resentment
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TeleportSkill:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 834631660}
+        m_TargetAssemblyTypeName: ResentmentSkill, Assembly-CSharp
+        m_MethodName: Teleport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   InteractionEvent:
     m_PersistentCalls:
       m_Calls: []
-  noOfClicks: 0
-  lastClickedTime: 0
-  maxComboDelay: 0.8
-  isMoving: 0
 --- !u!4 &765301533
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,6 +1153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 834631658}
   - component: {fileID: 834631659}
+  - component: {fileID: 834631660}
   m_Layer: 0
   m_Name: SkillSystem
   m_TagString: Untagged
@@ -1076,6 +1185,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85d3e9646687dc14b87bdc247c86f1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 0
+  isQSkillRunning: 0
+  isESkillRunning: 0
+  isSpaceSkillRunning: 0
+  QSkillCoolTime: 5
+  ESkillCoolTime: 8
+  SpaceSkillCoolTime: 8
+  QSKillBoxPosition: {fileID: 279197948}
+  ESKillBoxPosition: {fileID: 401401323}
+  QSkillBoxSize: {x: 7, y: 2.5}
+  ESkillBoxSize: {x: 5, y: 3}
+--- !u!114 &834631660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834631657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ccd58de632224a8db2c7dbab582db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1073147806
@@ -1395,3 +1527,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5283217, y: 3.5880537}
   m_EdgeRadius: 0
+--- !u!1 &1815165716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1815165717}
+  m_Layer: 7
+  m_Name: NormalPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1815165717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815165716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.56, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 609556298}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

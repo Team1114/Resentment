@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour
 {
     PlayerController _playerController;
 
+    [SerializeField] private bool isMoving = false; // Dash 또는 Jump 하고 있는지
+
     #region 이벤트
     [Header("AttackEvent")]
     public UnityEvent SwordMeleAttack; // 단검 근접 공격 - 마우스 좌클릭
@@ -17,19 +19,23 @@ public class PlayerInput : MonoBehaviour
 
     public UnityEvent EDownSkill; // E 눌렀을 때 나오는 스킬
     public UnityEvent QDownSKill; // Q 눌렀을 때 나오는 스킬
-    public UnityEvent RDownSKill; // R 눌렀을 때 나오는 스킬
 
     public UnityEvent ResentmentSkill; // 울분 스킬 (궁극기 컨셉) - Space
+    public UnityEvent TeleportSkill; // 울분 중 텔레포트 스킬 (궁극기 컨셉) - SpaceSecond
 
     [Header("OtherEvent")]
     public UnityEvent InteractionEvent; // 상호작용 - F
     #endregion
 
-    public int noOfClicks = 0;
-    public float lastClickedTime = 0;
-    public float maxComboDelay = 0.8f;
+    // 콤보 시스템 변수
+    private int comNoOfClicks = 0;
+    private float comLastClickedTime = 0;
+    private float comMaxComboDelay = 0.8f;
 
-    [SerializeField] private bool isMoving = false; // Dash 또는 Jump 하고 있는지
+    // 궁극기 스킬 변수
+    private int spaceNoOfClicks = 0;
+    private float spaceLastClickedTime = 0;
+    private float spaceMaxComboDelay = 4f;
 
     private void Awake()
     {
@@ -38,7 +44,9 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time - lastClickedTime > maxComboDelay) noOfClicks = 0;
+        if (Time.time - comLastClickedTime > comMaxComboDelay) comNoOfClicks = 0;
+        if (Time.time - spaceLastClickedTime > spaceMaxComboDelay) spaceNoOfClicks = 0;
+
         isMoving = MovingCheck();
 
         GetSwordMeleAttackInput();
@@ -46,7 +54,6 @@ public class PlayerInput : MonoBehaviour
 
         GetQSkill();
         GetESkill();
-        GetRSkill();
 
         GetSpaceSkill(); // Resentment Skill
 
@@ -71,23 +78,25 @@ public class PlayerInput : MonoBehaviour
     private void GetSwordMeleAttackInput() // 단검 공격
     {
         if (isMoving) return;
+        if (PlayerSkillSystem.isSKillRunning) return;
 
         if (Input.GetMouseButtonDown(0)) // 좌클릭
         {
-            lastClickedTime = Time.time;
-            noOfClicks++;
-            if (noOfClicks == 1)
+            comLastClickedTime = Time.time;
+            comNoOfClicks++;
+
+            if (comNoOfClicks == 1)
             {
                 SwordMeleAttack?.Invoke();
             }
-            else if (noOfClicks == 2)
+            else if (comNoOfClicks == 2)
             {
                 SwordMeleAttackSecond?.Invoke();
             }
-            else if (noOfClicks == 3)
+            else if (comNoOfClicks == 3)
             {
                 SwordMeleAttackThird?.Invoke();
-                noOfClicks = 0;
+                comNoOfClicks = 0;
             }
         }
     }
@@ -95,6 +104,7 @@ public class PlayerInput : MonoBehaviour
     private void GetSwordFireAttack() // 단검 원거리 공격
     {
         if (isMoving) return;
+        if (PlayerSkillSystem.isSKillRunning) return;
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -122,23 +132,25 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    private void GetRSkill()
-    {
-        if (isMoving) return;
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RDownSKill?.Invoke();
-        }
-    }
-
     private void GetSpaceSkill()
     {
         if (isMoving) return;
+        if (PlayerSkillSystem.isSKillRunning) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ResentmentSkill?.Invoke();
+            spaceLastClickedTime = Time.time;
+            spaceNoOfClicks++;
+
+            if (spaceNoOfClicks == 1)
+            {
+                ResentmentSkill?.Invoke();
+            }
+            else if (spaceNoOfClicks == 2)
+            {
+                TeleportSkill?.Invoke();
+                spaceNoOfClicks = 0;
+            }
         }
     }
 }
