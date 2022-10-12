@@ -1093,9 +1093,9 @@ MonoBehaviour:
   ResentmentSkill:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 834631660}
-        m_TargetAssemblyTypeName: ResentmentSkill, Assembly-CSharp
-        m_MethodName: Resentment
+      - m_Target: {fileID: 834631659}
+        m_TargetAssemblyTypeName: PlayerSkillSystem, Assembly-CSharp
+        m_MethodName: SpaceSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1108,9 +1108,9 @@ MonoBehaviour:
   TeleportSkill:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 834631660}
-        m_TargetAssemblyTypeName: ResentmentSkill, Assembly-CSharp
-        m_MethodName: Teleport
+      - m_Target: {fileID: 834631659}
+        m_TargetAssemblyTypeName: PlayerSkillSystem, Assembly-CSharp
+        m_MethodName: SpacePlusSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   isSpaceSkillRunning: 0
   QSkillCoolTime: 5
   ESkillCoolTime: 8
-  SpaceSkillCoolTime: 8
+  SpaceSkillCoolTime: 15
   QSKillBoxPosition: {fileID: 279197948}
   ESKillBoxPosition: {fileID: 401401323}
   QSkillBoxSize: {x: 7, y: 2.5}

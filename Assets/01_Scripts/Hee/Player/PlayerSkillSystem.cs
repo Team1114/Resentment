@@ -28,7 +28,7 @@ public class PlayerSkillSystem : MonoBehaviour
     [Header("SKillCooltime")] // 쿨타임
     [SerializeField] private float QSkillCoolTime = 4f; 
     [SerializeField] private float ESkillCoolTime = 7f;
-    [SerializeField] private float SpaceSkillCoolTime = 10f;
+    public float SpaceSkillCoolTime = 10f;
 
     [Header("AttackPosition")] // 박스 포지션
     [SerializeField] private Transform QSKillBoxPosition;
@@ -53,14 +53,27 @@ public class PlayerSkillSystem : MonoBehaviour
         if (!canUseSpaceSkill) return;
         if (isSpaceSkillRunning) return; // 스킬 사용 중이면 return
 
+        canUseSpaceSkill = false;
+        isSpaceSkillRunning = true;
+
         _resentmentSKill.Resentment();
+        Invoke("ResetSpaceSkill", 4f);
+    }
+
+    private void ResetSpaceSkill()
+    {
+        isSpaceSkillRunning = false;
+        StartCoroutine(CoolTime(SpaceSkillCoolTime));
     }
 
     public void SpacePlusSkill()
     {
         if (!isSpaceSkillRunning) return; // 스킬 사용 중이지 않으면 return
 
+        isSpaceSkillRunning = false;
+
         _resentmentSKill.Teleport();
+        StartCoroutine(CoolTime(SpaceSkillCoolTime * 2));
     }
 
     public void QSKill()
@@ -115,17 +128,15 @@ public class PlayerSkillSystem : MonoBehaviour
         StartCoroutine(CoolTime(ESkillCoolTime));
     }
 
-    public IEnumerator CoolTime(float coolTime)
+    IEnumerator CoolTime(float coolTime)
     {
         float FirstCoolTime = coolTime;
-
-        /*yield return new WaitForSeconds(3f);
-        isQSkillRunning = false;*/
 
         yield return new WaitForSeconds(coolTime);
 
         if (FirstCoolTime == QSkillCoolTime) canUseQSkill = true;
         else if (FirstCoolTime == ESkillCoolTime) canUseESkill = true;
+        else if (FirstCoolTime == SpaceSkillCoolTime) canUseSpaceSkill = true;
     }
 
     private void OnDrawGizmos()
