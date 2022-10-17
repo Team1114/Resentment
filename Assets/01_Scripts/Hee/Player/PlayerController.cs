@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     BoxCollider2D col;
     Rigidbody2D rb;
 
-    public bool isRight = true;
+    public bool isRight = false;
+    public bool isLeft = false;
 
     #region 점프
     [Header("점프")]
@@ -36,12 +37,13 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = transform.GetComponentInChildren<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        //Time.timeScale = 0.5f; 
     }
 
     void Update()
     {
-        Move();
         DirectionCheck();
+        Move();
         JumpCheck();
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -57,29 +59,34 @@ public class PlayerController : MonoBehaviour
     void DirectionCheck()
     {
         Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        isRight = false;
+        isLeft = false;
 
         if (moveDir.x == 1)
         {
+            isLeft = false;
             isRight = true;
         }
         else if (moveDir.x == -1)
         {
             isRight = false;
+            isLeft = true;
         }
     }
 
     void Move()
     {
         // Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
-
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y); //moveDir * speed;
-
+        if(isRight || isLeft)
+        {
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y); //moveDir * speed;
+        }
         if (isRight)
         {
             // sprite.flipX = false;
             transform.localScale = new Vector3(1, 1, 0);
         }
-        else if (isRight == false)
+        if (isLeft)
         {
             // sprite.flipX = true;
             transform.localScale = new Vector3(-1, 1, 0);
@@ -123,7 +130,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(DashCoroutine(1)); // 대시코루틴의 매개변수에 1을 넣어줌
         }
-        else if (isRight == false) // 왼쪽일 때
+        else if (isLeft) // 왼쪽일 때
         {
             StartCoroutine(DashCoroutine(-1)); // 대시코루틴의 매개변수에 -1을 넣어줌
         }
