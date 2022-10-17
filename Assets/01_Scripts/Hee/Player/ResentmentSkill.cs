@@ -14,6 +14,7 @@ public class ResentmentSkill : MonoBehaviour
     public void Resentment() // 실행시간은 4초로 일단 (바꾸면 인풋에서도 바꿔줘야 함)
     {
         print("Resentment");
+        PlayerPrefs.SetInt("Resentment", 1);
     }
 
     public void Teleport()
