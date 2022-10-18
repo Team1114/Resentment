@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ec69ead06e6ccc84eb7509a20153fd8c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - intText: {fileID: 3288997539642116365, guid: b1c39c89b3bb4384ea305950da99ff2d, type: 3}
+  - floatText: {fileID: 7225920631647628186, guid: d9b6317f683393c42915ae0139dd2501, type: 3}
+  - stringText: {fileID: 9192728078098192226, guid: e0e2a6db452ae0140aa5dec34e9e5f2e, type: 3}
+  - boolText: {fileID: 1419599062094793436, guid: d3c9ea5e342eaa947b6442879505052f, type: 3}
+  - spriteImgae: {fileID: 5160972985632470971, guid: ee031e90569af064ca48d406af857313, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
