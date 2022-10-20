@@ -9,6 +9,7 @@ public class ViewOption : MonoBehaviour
 {
     FullScreenMode screenMode;
     public Toggle fullScreenBtn;
+    public Toggle screenBtn;
     List<Resolution> resolutions = new List<Resolution>();
     public TMP_Dropdown resolutionDropDown;
     int resolutionNum;
@@ -25,7 +26,7 @@ public class ViewOption : MonoBehaviour
         
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            if(Screen.resolutions[i].refreshRate == 59)
+            if(Screen.resolutions[i].refreshRate == 59 || Screen.resolutions[i].refreshRate == 60)
             {
                 resolutions.Add(Screen.resolutions[i]);
             }
@@ -52,12 +53,13 @@ public class ViewOption : MonoBehaviour
         resolutionDropDown.RefreshShownValue();
 
         fullScreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
+        screenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? false : true;
 
     }
 
     public void DropDownOptionChange(int a)
     {
-        resolutionNum = a;  
+        resolutionNum = a;
     }
 
     public void OKButtonClick()
@@ -65,8 +67,13 @@ public class ViewOption : MonoBehaviour
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
     }
 
-    public void ToggleBtn(bool isFull)
+    public void FullBtn()
     {
-       screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        screenMode = FullScreenMode.FullScreenWindow;
     }
+    public void ScreenBtn()
+    {
+        screenMode = FullScreenMode.Windowed;
+    }
+
 }
