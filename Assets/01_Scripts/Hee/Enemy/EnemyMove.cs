@@ -17,15 +17,25 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        rb.position += dir * /*data*/speed * Time.deltaTime;
+        Movement();
+    }
+
+    private void Movement()
+    {
+        rb.position += dir * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Point"))
+        if (collision.CompareTag("Point")) // 포인트랑 충돌했을 때
         {
-            dir.x *= -1;
-            transform.localScale = new Vector3(-dir.x, 1, 1);
+            DirChange();
         }
+    }
+
+    private void DirChange()
+    {
+        dir.x *= -1;
+        transform.localScale = new Vector3(-dir.x, 1, 1);
     }
 }

@@ -57,12 +57,16 @@ public class PlayerSkillSystem : MonoBehaviour
         isSpaceSkillRunning = true;
 
         _resentmentSKill.Resentment();
-        Invoke("ResetSpaceSkill", 4f);
+        Invoke("ResetSpaceSkill", 4.1f);
     }
 
     private void ResetSpaceSkill()
     {
+        if (!isSpaceSkillRunning) return;
+        
         isSpaceSkillRunning = false;
+        _resentmentSKill.FinishResentment();
+
         StartCoroutine(CoolTime(SpaceSkillCoolTime));
     }
 
@@ -71,9 +75,9 @@ public class PlayerSkillSystem : MonoBehaviour
         if (!isSpaceSkillRunning) return; // 스킬 사용 중이지 않으면 return
 
         isSpaceSkillRunning = false;
-
         _resentmentSKill.Teleport();
-        StartCoroutine(CoolTime(SpaceSkillCoolTime * 2));
+
+        StartCoroutine(CoolTime(SpaceSkillCoolTime * 1.5f));
     }
 
     public void QSKill()
