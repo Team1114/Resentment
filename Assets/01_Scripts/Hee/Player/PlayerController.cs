@@ -78,12 +78,10 @@ public class PlayerController : MonoBehaviour
 
         if (isRight)
         {
-            // sprite.flipX = false;
             transform.localScale = new Vector3(1, 1, 0);
         }
         else if (isRight == false)
         {
-            // sprite.flipX = true;
             transform.localScale = new Vector3(-1, 1, 0);
         }
     }
