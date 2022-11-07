@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sprite; // flip
     BoxCollider2D col;
     Rigidbody2D rb;
+    [HideInInspector] public Transform tr;
 
     public bool isRight = true;
 
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         col = transform.GetComponentInChildren<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -76,12 +78,10 @@ public class PlayerController : MonoBehaviour
 
         if (isRight)
         {
-            // sprite.flipX = false;
             transform.localScale = new Vector3(1, 1, 0);
         }
         else if (isRight == false)
         {
-            // sprite.flipX = true;
             transform.localScale = new Vector3(-1, 1, 0);
         }
     }
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Dash()
+    public void Dash()
     {
         if (!canDash) return;
         if (isDashing) return;
