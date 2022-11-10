@@ -17,20 +17,12 @@ public class PlayerController : MonoBehaviour
     #region 점프
     [Header("점프")]
     public bool isJumpping = false;
-    public float canJump;
     [SerializeField] private float jumpPower;
     #endregion
 
     #region 움직임
     [Header("움직임")]
     [SerializeField] private float speed;
-    #endregion
-
-    #region 대쉬
-    [Header("대쉬")]
-    public bool isDashing = false;
-    public bool canDash = true;
-    public float dashDelayTime;
     #endregion
 
     #region 슬라이드
@@ -86,39 +78,17 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         if (isJumpping) return;
+        StartCoroutine(JumpCotoutine());                        
+    }
 
+    IEnumerator JumpCotoutine()
+    {
         isJumpping = true;
-
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-    }
 
-    public void Dash()
-    {
-        if (!canDash) return;
-        if (isDashing) return;
+        yield return new WaitForSeconds(1.2f);
 
-        if (isRight) // 오른쪽일 때
-        {
-            StartCoroutine(DashCoroutine(1)); // 대시코루틴의 매개변수에 1을 넣어줌
-        }
-        else if (isRight == false) // 왼쪽일 때
-        {
-            StartCoroutine(DashCoroutine(-1)); // 대시코루틴의 매개변수에 -1을 넣어줌
-        }
-    }
-
-    IEnumerator DashCoroutine(float rightAndleft)
-    {
-        canDash = false;
-        isDashing = true;
-
-        transform.DOMoveX(transform.position.x + 2 * rightAndleft, 0.2f); // 매개변수의 값이 양수냐 음수냐에 따라 방향이 달라짐
-
-        yield return new WaitForSeconds(0.18f);
-        isDashing = false;
-
-        yield return new WaitForSeconds(dashDelayTime);
-        canDash = true;
+        isJumpping = false;
     }
 
     public void Slide()

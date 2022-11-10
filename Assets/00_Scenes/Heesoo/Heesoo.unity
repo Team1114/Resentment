@@ -1258,9 +1258,8 @@ MonoBehaviour:
   isRight: 1
   isGround: 0
   isJumpping: 0
-  canJump: 0.1
-  jumpPower: 5.5
-  speed: 5
+  jumpPower: 8
+  speed: 10
   isDashing: 0
   canDash: 1
   dashDelayTime: 1.5

@@ -11,15 +11,14 @@ public class PlayerInput : MonoBehaviour
 
     #region 이벤트
     [Header("Event")]
-    public UnityEvent JumpEvent;
-    public UnityEvent DashEvent;
-    public UnityEvent SlideEvent;
+    public UnityEvent JumpEvent; // 점프
+    public UnityEvent SlideEvent; // 슬라이드 
+    public UnityEvent PassEvent; // 오브젝트 넘기  
 
     public UnityEvent SwordMeleAttack; // 단검 근접 공격 - 마우스 좌클릭
     public UnityEvent SwordMeleAttackSecond; // 단검 근접 공격 - 마우스 좌클릭 2번째 공격
     public UnityEvent SwordMeleAttackThird; // 단검 근접 공격 - 마우스 좌클릭 3번째 공격
 
-    public UnityEvent PushAttack; // 단검 원거리 공격 - 마우스 우클릭 // 넉백 공격 칼바람
     #endregion
 
     // 콤보 시스템 변수
@@ -39,16 +38,15 @@ public class PlayerInput : MonoBehaviour
         isMoving = MovingCheck();
 
         GetJumpInput();
-        GetDashInput();
         GetSlideInput();
+        GetPassInput();
 
         GetSwordMeleAttackInput();
-        GetSwordFireAttack();
     }
 
     private bool MovingCheck()
     {
-        return _playerController.isDashing || _playerController.isJumpping || _playerController.isSliding;
+        return _playerController.isJumpping || _playerController.isSliding;
     }
 
     private void GetJumpInput()
@@ -61,16 +59,6 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    private void GetDashInput()
-    {
-        if (isMoving) return;
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            DashEvent?.Invoke();   
-        }
-    }
-
     private void GetSlideInput()
     {
         if (isMoving) return;
@@ -78,6 +66,16 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             SlideEvent?.Invoke();
+        }
+    }
+
+    private void GetPassInput()
+    {
+        if (isMoving) return;
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            PassEvent?.Invoke();
         }
     }
 
@@ -105,14 +103,5 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
-
-    private void GetSwordFireAttack() // 단검 원거리 공격
-    {
-        if (isMoving) return;
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            PushAttack?.Invoke();
-        }
-    }
+    
 }
