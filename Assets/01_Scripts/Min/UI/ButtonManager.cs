@@ -14,15 +14,22 @@ public class ButtonManager : MonoBehaviour
     [Header("SettingBtns")]
     [SerializeField] GameObject settingMenu;
 
+    [Header("BackGround")]
+    [SerializeField] GameObject background;
+
+    [Header("Resolution")]
+    [SerializeField] GameObject resolution;
+
     #region SettingBtn
     public void SettingBtnOn()
     {
         settingMenu.SetActive(true);
-        //세팅 배경화면 블러
+        background.SetActive(true);
     }
     public void SettingBtnOff()
     {
         settingMenu.SetActive(false);
+        background.SetActive(false);
     }
     #endregion
 
@@ -36,4 +43,5 @@ public class ButtonManager : MonoBehaviour
         #endif
     }
     #endregion
+
 }
