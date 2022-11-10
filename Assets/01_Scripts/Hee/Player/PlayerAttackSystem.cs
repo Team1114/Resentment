@@ -2,19 +2,10 @@ using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
 {
-    PlayerController _playerController;
-
     [SerializeField] private Transform NormalAttackBoxPosition;
     [SerializeField] private Vector2 NormalAttackBoxSize;
 
-    public GameObject windPrefab; // SwordWind prefab
-
-    private bool canFireAttack = false;
-
-    private void Awake()
-    {
-        _playerController = GetComponentInParent<PlayerController>();
-    }
+    private bool canRightClickEvent = false;
 
     public void SwordMeleAttack1() // 이 함수에서 인풋 count 매개변수로 가져와서 if문으로 콤보 확인으로 수정하기
     {
@@ -51,28 +42,7 @@ public class PlayerAttackSystem : MonoBehaviour
             if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
         }
 
-        canFireAttack = true;
-    }
-
-    public void SwordFireAttack()
-    {
-        print("SwordFireAttack");
-
-        if (!canFireAttack) return;
-
-        if (_playerController.isRight)
-        {
-            windPrefab.GetComponent<SwordWind>().isRight = true;
-        }
-        else
-        {
-            windPrefab.GetComponent<SwordWind>().isRight = false;
-        }
-
-        windPrefab.transform.position = NormalAttackBoxPosition.position;
-        Instantiate(windPrefab);
-
-        canFireAttack = false;
+        canRightClickEvent = true;
     }
 
     private void OnDrawGizmos()

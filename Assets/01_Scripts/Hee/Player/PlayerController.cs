@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    SpriteRenderer sprite; // flip
     BoxCollider2D col;
     Rigidbody2D rb;
-    [HideInInspector] public Transform tr;
+    Transform tr;
+    Animator anim;
+
+    public LayerMask layermask;
 
     public bool isRight = true;
+    public bool isGround = true;
 
     #region 점프
     [Header("점프")]
     public bool isJumpping = false;
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private float jumpPower;
     public float canJump;
+    [SerializeField] private float jumpPower;
     #endregion
 
     #region 움직임
     [Header("움직임")]
     [SerializeField] private float speed;
-    [SerializeField] Animator anim;
     #endregion
 
     #region 대쉬
@@ -32,28 +33,26 @@ public class PlayerController : MonoBehaviour
     public float dashDelayTime;
     #endregion
 
+    #region 슬라이드
+    [Header("슬라이드")]
+    public bool isSliding = false;
+    public bool canSlide = true;
+    [SerializeField] private Vector2 colSize;
+    [SerializeField] private Vector2 colOffset;
+    #endregion
+
     private void Awake()
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         col = transform.GetComponentInChildren<BoxCollider2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
         Move();
         DirectionCheck();
-        JumpCheck();
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Jump();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Dash();
-        }
     }
 
     void DirectionCheck()
@@ -72,52 +71,31 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        // Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        rb.velocity = new Vector2(speed, rb.velocity.y); //moveDir * speed;
 
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y); //moveDir * speed;
-
-        if (isRight)
+        /*if (isRight)
         {
             transform.localScale = new Vector3(1, 1, 0);
         }
         else if (isRight == false)
         {
             transform.localScale = new Vector3(-1, 1, 0);
-        }
+        }*/
     }
 
-    void Jump()
+    public void Jump()
     {
-        JumpCheck();
-
         if (isJumpping) return;
 
+        isJumpping = true;
+
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-    }
-
-    private void JumpCheck()
-    {
-        RaycastHit2D raycast = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, canJump, layerMask);
-
-        // 애니메이션 코드 주석 상태 해제
-        if (raycast.collider != null) // 바닥에 있을 때
-        {
-            isJumpping = false;
-            // anim.SetTrigger("isJump");
-        }
-        else // 떠 있을 때
-        {
-            isJumpping = true;
-            // anim.SetTrigger("isJump");
-        }
     }
 
     public void Dash()
     {
         if (!canDash) return;
         if (isDashing) return;
-
-        Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
 
         if (isRight) // 오른쪽일 때
         {
@@ -141,5 +119,33 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashDelayTime);
         canDash = true;
+    }
+
+    public void Slide()
+    {
+        if (!canSlide) return;
+        if (isSliding) return;
+
+        Debug.Log("SlideMoment");
+
+        StartCoroutine(SlideCoroutine());
+    }
+
+    IEnumerator SlideCoroutine()
+    {
+        isSliding = true;
+
+        Vector2 lastCoSize = col.size; 
+        Vector2 lastColOffset = col.offset; 
+
+        col.size = colSize;
+        col.offset = colOffset;
+
+        yield return new WaitForSeconds(2f);
+        
+        col.size = lastCoSize;
+        col.offset = lastColOffset;
+        
+        isSliding = false;
     }
 }
