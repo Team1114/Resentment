@@ -11,13 +11,15 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask layermask;
 
-    public bool isRight = true;
+    [HideInInspector] public bool isRight = true;
     public bool isGround = true;
+    public bool isObstacle = false;
 
     #region 점프
     [Header("점프")]
     public bool isJumpping = false;
     [SerializeField] private float jumpPower;
+    [HideInInspector] public int jumpCount = 2;
     #endregion
 
     #region 움직임
@@ -28,9 +30,13 @@ public class PlayerController : MonoBehaviour
     #region 슬라이드
     [Header("슬라이드")]
     public bool isSliding = false;
-    public bool canSlide = true;
     [SerializeField] private Vector2 colSize;
     [SerializeField] private Vector2 colOffset;
+    #endregion
+
+    #region 넘기
+    [Header("넘기")]
+    public bool isPassing = false;
     #endregion
 
     private void Awake()
@@ -43,21 +49,37 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        GroundCheck();
         Move();
-        DirectionCheck();
     }
 
-    void DirectionCheck()
+    void GroundCheck()
     {
-        Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        Vector2 rayPosition = new Vector2(tr.position.x, tr.position.y - 1.3f);
+        RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.down, 0.01f);
 
-        if (moveDir.x == 1)
+        if (hit.collider != null)
         {
-            isRight = true;
+            if (hit.collider.CompareTag("Ground")) // 땅일 때
+            {
+                isGround = true;
+                speed = 10f;
+                if (isJumpping)
+                {
+                    isJumpping = false;
+                }
+                jumpCount = 2;
+            }
+            else // 공중일 때
+            {
+                isGround = false;
+                speed = 7f;
+            }
         }
-        else if (moveDir.x == -1)
+        else // 공중일 때
         {
-            isRight = false;
+            isGround = false;
+            speed = 7f;
         }
     }
 
@@ -77,24 +99,36 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isJumpping) return;
-        StartCoroutine(JumpCotoutine());                        
+        if (isSliding) return;
+        if (isPassing) return;
+        if (jumpCount <= 1) return;
+
+        print("JumpMoment");
+
+        StartCoroutine(JumpCotoutine());
     }
 
     IEnumerator JumpCotoutine()
     {
         isJumpping = true;
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        jumpCount--;
 
-        yield return new WaitForSeconds(1.2f);
-
-        isJumpping = false;
+        if (jumpCount == 2)
+        {
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
+        else if (jumpCount == 1)
+        {
+            rb.AddForce(Vector2.up * (jumpPower * 0.7f), ForceMode2D.Impulse);
+        }
+        yield return null;
     }
 
     public void Slide()
     {
-        if (!canSlide) return;
         if (isSliding) return;
+        if (isJumpping) return;
+        if (isPassing) return;
 
         Debug.Log("SlideMoment");
 
@@ -111,7 +145,7 @@ public class PlayerController : MonoBehaviour
         col.size = colSize;
         col.offset = colOffset;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         
         col.size = lastCoSize;
         col.offset = lastColOffset;

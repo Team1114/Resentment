@@ -46,12 +46,12 @@ public class PlayerInput : MonoBehaviour
 
     private bool MovingCheck()
     {
-        return _playerController.isJumpping || _playerController.isSliding;
+        return _playerController.isJumpping || _playerController.isSliding || _playerController.isPassing;
     }
 
     private void GetJumpInput()
     {
-        if (isMoving) return;
+        // if (isMoving) return;
 
         if (Input.GetKeyDown(KeyCode.W))
         {
