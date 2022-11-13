@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    //Load Scene
+    [SerializeField] private string scenename;
 
     [Header("Btns")]
     [SerializeField] GameObject contiueBtn;
@@ -19,6 +22,9 @@ public class ButtonManager : MonoBehaviour
 
     [Header("Resolution")]
     [SerializeField] GameObject resolution;
+
+    [Header("Quit")]
+    [SerializeField] GameObject QuitQuestion;
 
     #region SettingBtn
     public void SettingBtnOn()
@@ -42,6 +48,20 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
         #endif
     }
+
+    public void InGameQuitQuestionOn()
+    {
+        QuitQuestion.SetActive(true);
+    }
+
+    public void QuitQuestionOff()
+    {
+        QuitQuestion.SetActive(false);
+    }
     #endregion
 
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(scenename);
+    }
 }
