@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     #region 슬라이드
     [Header("슬라이드")]
     public bool isSliding = false;
+    public float slidingTime = 1.5f;
     [SerializeField] private Vector2 colSize;
     [SerializeField] private Vector2 colOffset;
     #endregion
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     #region 넘기
     [Header("넘기")]
     public bool isPassing = false;
+    public float passingTime = 1.5f;
     #endregion
 
     private void Awake()
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundCheck();
+        ObstacleCheck();
         Move();
     }
 
@@ -64,10 +67,6 @@ public class PlayerController : MonoBehaviour
             {
                 isGround = true;
                 speed = 10f;
-                if (isJumpping)
-                {
-                    isJumpping = false;
-                }
                 jumpCount = 2;
             }
             else // 공중일 때
@@ -80,6 +79,29 @@ public class PlayerController : MonoBehaviour
         {
             isGround = false;
             speed = 7f;
+        }
+        isJumpping = !isGround;
+    }
+
+    void ObstacleCheck()
+    {
+        Vector2 rayPosition = new Vector2(tr.position.x + 1f, tr.position.y - 0.5f);
+        RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.right, 0.5f);
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Obstacle"))
+            {
+                isObstacle = true;
+            }
+            else
+            {
+                isObstacle = false;
+            }
+        }
+        else
+        {
+            isObstacle = false; 
         }
     }
 
@@ -126,10 +148,6 @@ public class PlayerController : MonoBehaviour
 
     public void Slide()
     {
-        if (isSliding) return;
-        if (isJumpping) return;
-        if (isPassing) return;
-
         Debug.Log("SlideMoment");
 
         StartCoroutine(SlideCoroutine());
@@ -145,11 +163,36 @@ public class PlayerController : MonoBehaviour
         col.size = colSize;
         col.offset = colOffset;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(slidingTime);
         
         col.size = lastCoSize;
         col.offset = lastColOffset;
         
         isSliding = false;
+    }
+
+    public void Pass()
+    {
+        if (!isObstacle) return;
+
+        StartCoroutine(PassCoroutine());
+    }
+
+    IEnumerator PassCoroutine()
+    {
+        isPassing = true;
+
+        Vector2 lastCoSize = col.size;
+        Vector2 lastColOffset = col.offset;
+
+        col.size = colSize;
+        col.offset = -colOffset;
+
+        yield return new WaitForSeconds(passingTime);
+
+        col.size = lastCoSize;
+        col.offset = lastColOffset;
+
+        isPassing = false;
     }
 }

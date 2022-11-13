@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance = null;
+    public static GameManager Instance;
 
     private void Awake()
     {
@@ -22,5 +22,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(ex.Message);
         }
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
     }
 }

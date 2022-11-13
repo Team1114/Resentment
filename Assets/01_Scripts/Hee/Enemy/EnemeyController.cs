@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class EnemeyController : MonoBehaviour
 {
-    /*[SerializeField] EnemyDataSO data;
-    public EnemyDataSO Data { get { return data; } }*/
     public int speed = 5; // 추후 삭제
     Rigidbody2D rb;
     [HideInInspector] public Vector2 dir;
-
-    public bool isCheckPlayer = false;
-    public bool isFollowPlayer = false;
-    public bool isAttackPlayer = false;
 
     private void Awake()
     {
@@ -46,7 +40,6 @@ public class EnemeyController : MonoBehaviour
     {
         if (collision.CompareTag("Point")) // 포인트랑 충돌했을 때
         {
-            if (isCheckPlayer || isFollowPlayer || isAttackPlayer) return; // 무슨 행동이라도 하고 있으면 포인트는 무력화
             DirChange();
         }
     }

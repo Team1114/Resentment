@@ -51,8 +51,6 @@ public class PlayerInput : MonoBehaviour
 
     private void GetJumpInput()
     {
-        // if (isMoving) return;
-
         if (Input.GetKeyDown(KeyCode.W))
         {
             JumpEvent?.Invoke();
