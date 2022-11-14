@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class SharpObstacle : MonoBehaviour, IObstacleObject
 {
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        spriteRenderer.color = Color.black;
+    }
+
     public void Crash()
     {
         GameManager.Instance.GameOver();
     }
-
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            print("111");
-        }
-    }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
