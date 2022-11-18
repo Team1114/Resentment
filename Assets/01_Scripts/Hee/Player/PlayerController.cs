@@ -4,32 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    SpriteRenderer sprite; // flip
     BoxCollider2D col;
     Rigidbody2D rb;
-    [HideInInspector] public Transform tr;
+    Transform tr;
+    Animator anim;
 
-    public bool isRight = true;
+    public LayerMask layermask;
+
+    [HideInInspector] public bool isRight = true;
+    public bool isGround = true;
+    public bool isObstacle = false;
 
     #region 점프
     [Header("점프")]
     public bool isJumpping = false;
-    [SerializeField] private LayerMask layerMask;
     [SerializeField] private float jumpPower;
-    public float canJump;
+    [HideInInspector] public int jumpCount = 2;
     #endregion
 
     #region 움직임
     [Header("움직임")]
     [SerializeField] private float speed;
-    [SerializeField] Animator anim;
     #endregion
 
-    #region 대쉬
-    [Header("대쉬")]
-    public bool isDashing = false;
-    public bool canDash = true;
-    public float dashDelayTime;
+    #region 슬라이드
+    [Header("슬라이드")]
+    public bool isSliding = false;
+    public float slidingTime = 1.5f;
+    [SerializeField] private Vector2 colSize;
+    [SerializeField] private Vector2 colOffset;
+    #endregion
+
+    #region 넘기
+    [Header("넘기")]
+    public bool isPassing = false;
+    public float passingTime = 1.5f;
     #endregion
 
     private void Awake()
@@ -37,109 +46,153 @@ public class PlayerController : MonoBehaviour
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         col = transform.GetComponentInChildren<BoxCollider2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
+        GroundCheck();
+        ObstacleCheck();
         Move();
-        DirectionCheck();
-        JumpCheck();
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Jump();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Dash();
-        }
     }
 
-    void DirectionCheck()
+    void GroundCheck()
     {
-        Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        Vector2 rayPosition = new Vector2(tr.position.x, tr.position.y - 1.3f);
+        RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.down, 0.01f);
 
-        if (moveDir.x == 1)
+        if (hit.collider != null)
         {
-            isRight = true;
+            if (hit.collider.CompareTag("Ground")) // 땅일 때
+            {
+                isGround = true;
+                speed = 10f;
+                jumpCount = 2;
+            }
+            else // 공중일 때
+            {
+                isGround = false;
+                speed = 7f;
+            }
         }
-        else if (moveDir.x == -1)
+        else // 공중일 때
         {
-            isRight = false;
+            isGround = false;
+            speed = 7f;
+        }
+        isJumpping = !isGround;
+    }
+
+    void ObstacleCheck()
+    {
+        Vector2 rayPosition = new Vector2(tr.position.x + 1f, tr.position.y - 0.5f);
+        RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.right, 0.5f);
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Obstacle"))
+            {
+                isObstacle = true;
+            }
+            else
+            {
+                isObstacle = false;
+            }
+        }
+        else
+        {
+            isObstacle = false; 
         }
     }
 
     void Move()
     {
-        // Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        rb.velocity = new Vector2(speed, rb.velocity.y); //moveDir * speed;
 
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y); //moveDir * speed;
-
-        if (isRight)
+        /*if (isRight)
         {
             transform.localScale = new Vector3(1, 1, 0);
         }
         else if (isRight == false)
         {
             transform.localScale = new Vector3(-1, 1, 0);
-        }
+        }*/
     }
 
-    void Jump()
+    public void Jump()
     {
-        JumpCheck();
+        if (isSliding) return;
+        if (isPassing) return;
+        if (jumpCount <= 1) return;
 
-        if (isJumpping) return;
+        print("JumpMoment");
 
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        StartCoroutine(JumpCotoutine());
     }
 
-    private void JumpCheck()
+    IEnumerator JumpCotoutine()
     {
-        RaycastHit2D raycast = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, canJump, layerMask);
+        isJumpping = true;
+        jumpCount--;
 
-        // 애니메이션 코드 주석 상태 해제
-        if (raycast.collider != null) // 바닥에 있을 때
+        if (jumpCount == 2)
         {
-            isJumpping = false;
-            // anim.SetTrigger("isJump");
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
-        else // 떠 있을 때
+        else if (jumpCount == 1)
         {
-            isJumpping = true;
-            // anim.SetTrigger("isJump");
+            rb.AddForce(Vector2.up * (jumpPower * 0.7f), ForceMode2D.Impulse);
         }
+        yield return null;
     }
 
-    public void Dash()
+    public void Slide()
     {
-        if (!canDash) return;
-        if (isDashing) return;
+        Debug.Log("SlideMoment");
 
-        Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
-
-        if (isRight) // 오른쪽일 때
-        {
-            StartCoroutine(DashCoroutine(1)); // 대시코루틴의 매개변수에 1을 넣어줌
-        }
-        else if (isRight == false) // 왼쪽일 때
-        {
-            StartCoroutine(DashCoroutine(-1)); // 대시코루틴의 매개변수에 -1을 넣어줌
-        }
+        StartCoroutine(SlideCoroutine());
     }
 
-    IEnumerator DashCoroutine(float rightAndleft)
+    IEnumerator SlideCoroutine()
     {
-        canDash = false;
-        isDashing = true;
+        isSliding = true;
 
-        transform.DOMoveX(transform.position.x + 2 * rightAndleft, 0.2f); // 매개변수의 값이 양수냐 음수냐에 따라 방향이 달라짐
+        Vector2 lastCoSize = col.size; 
+        Vector2 lastColOffset = col.offset; 
 
-        yield return new WaitForSeconds(0.18f);
-        isDashing = false;
+        col.size = colSize;
+        col.offset = colOffset;
 
-        yield return new WaitForSeconds(dashDelayTime);
-        canDash = true;
+        yield return new WaitForSeconds(slidingTime);
+        
+        col.size = lastCoSize;
+        col.offset = lastColOffset;
+        
+        isSliding = false;
+    }
+
+    public void Pass()
+    {
+        if (!isObstacle) return;
+
+        StartCoroutine(PassCoroutine());
+    }
+
+    IEnumerator PassCoroutine()
+    {
+        isPassing = true;
+
+        Vector2 lastCoSize = col.size;
+        Vector2 lastColOffset = col.offset;
+
+        col.size = colSize;
+        col.offset = -colOffset;
+
+        yield return new WaitForSeconds(passingTime);
+
+        col.size = lastCoSize;
+        col.offset = lastColOffset;
+
+        isPassing = false;
     }
 }

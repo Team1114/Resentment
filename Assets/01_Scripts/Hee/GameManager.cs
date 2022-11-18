@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance = null;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        Instance = this;
-
-        if (Instance == null)
+        try
         {
-            Debug.Log("Gamanager Instance is null state");
+            Instance = this;
+            
+            if (Instance == null)
+            {
+                throw new Exception("GameManager Instance is null");
+            }
         }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
     }
 }
