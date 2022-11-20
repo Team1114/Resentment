@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             {
                 isGround = true;
                 speed = 10f;
-                jumpPower = 7f; // 인스펙터에서 바꾸면 여기도 수정
+                jumpPower = 8f; // 인스펙터에서 바꾸면 여기도 수정
                 jumpCount = 2;
             }
             else // 공중일 때
@@ -137,6 +137,16 @@ public class PlayerController : MonoBehaviour
     {
         isJumpping = true;
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+
+        if (jumpCount == 2)
+        {
+            // 점프
+        }
+        else
+        {
+            // 이단점프
+        }
+
         jumpCount--;
         yield return null;
     }
