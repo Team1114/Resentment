@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("점프")]
     public bool isJumpping = false;
     [SerializeField] private float jumpPower;
-    [HideInInspector] public int jumpCount = 2;
+    /*[HideInInspector] */public int jumpCount = 2;
     #endregion
 
     #region 움직임
@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator JumpCotoutine()
     {
         isJumpping = true;
-        jumpCount--;
 
         if (jumpCount == 2)
         {
@@ -141,8 +140,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (jumpCount == 1)
         {
-            rb.AddForce(Vector2.up * (jumpPower * 0.7f), ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * (jumpPower * 0.5f), ForceMode2D.Impulse);
         }
+        jumpCount--;
         yield return null;
     }
 
