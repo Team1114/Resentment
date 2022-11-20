@@ -67,16 +67,19 @@ public class PlayerController : MonoBehaviour
             {
                 isGround = true;
                 speed = 10f;
+                jumpPower = 7f; // 인스펙터에서 바꾸면 여기도 수정
                 jumpCount = 2;
             }
             else // 공중일 때
             {
+                jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
                 isGround = false;
                 speed = 7f;
             }
         }
         else // 공중일 때
         {
+            jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
             isGround = false;
             speed = 7f;
         }
@@ -133,15 +136,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator JumpCotoutine()
     {
         isJumpping = true;
-
-        if (jumpCount == 2)
-        {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        }
-        else if (jumpCount == 1)
-        {
-            rb.AddForce(Vector2.up * (jumpPower * 0.5f), ForceMode2D.Impulse);
-        }
+        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         jumpCount--;
         yield return null;
     }
