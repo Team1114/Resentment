@@ -8,11 +8,12 @@ TagManager:
   - Point
   - Ground
   - Obstacle
+  - CameraConfiner
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - CameraConfiner
   - Water
   - UI
   - Ground

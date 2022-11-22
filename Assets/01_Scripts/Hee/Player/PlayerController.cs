@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
                 jumpPower = 7f; // 인스펙터에서 바꾸면 여기도 수정
                 jumpCount = 2;
             }
-            else // 공중일 때
+            else if (!hit.collider.CompareTag("Ground")) // 공중일 때
             {
                 jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
                 isGround = false;
