@@ -31,20 +31,6 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
-    public void SwordMeleAttack3()
-    {
-        print("SwordMeleAttack3");
-
-        Collider2D collider = Physics2D.OverlapBox(NormalAttackBoxPosition.position, NormalAttackBoxSize, 0);
-
-        if (collider != null)
-        {
-            if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
-        }
-
-        // canRightClickEvent = true;
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
