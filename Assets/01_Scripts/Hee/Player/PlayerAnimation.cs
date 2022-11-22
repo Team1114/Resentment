@@ -29,6 +29,16 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetBool("Jumping", false);
     }
 
+    public void DoubleJumpOn()
+    {
+
+    }
+
+    public void DoubleJumpOff()
+    {
+
+    }
+
     public void SlideAnimOn()
     {
         anim.SetBool("Sliding", true);
@@ -52,6 +62,7 @@ public class PlayerAnimation : MonoBehaviour
     public void FirstAttackAnimOn()
     {
         anim.SetBool("FrAttack", true);
+        Invoke("FirstAttackAnimOff", 0.25f);
     }
 
     public void FirstAttackAnimOff()
@@ -62,6 +73,7 @@ public class PlayerAnimation : MonoBehaviour
     public void SecondAttackAnimOn()
     {
         anim.SetBool("ScAttack", true);
+        Invoke("SecondAttackAnimOff", 0.4f);
     }
 
     public void SecondAttackAnimOff()
