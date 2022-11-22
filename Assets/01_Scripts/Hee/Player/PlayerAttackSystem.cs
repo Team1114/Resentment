@@ -17,6 +17,10 @@ public class PlayerAttackSystem : MonoBehaviour
         {
             if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
         }
+
+        PlayerAnimation.Instance.FirstAttackAnimOn();
+
+        PlayerAnimation.Instance.FirstAttackAnimOff();
     } 
 
     public void SwordMeleAttack2()
@@ -29,6 +33,10 @@ public class PlayerAttackSystem : MonoBehaviour
         {
             if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
         }
+
+        PlayerAnimation.Instance.SecondAttackAnimOn();
+
+        PlayerAnimation.Instance.SecondAttackAnimOff();
     }
 
     private void OnDrawGizmos()

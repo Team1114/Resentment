@@ -4,40 +4,68 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    public static PlayerAnimation Instance;
+
     Animator anim;
 
     private void Awake()
     {
+        Instance = this; 
         anim = GetComponent<Animator>();
     }
 
-    public void RunAnimation()
-    {
+    // Jump : PlayerController 스크립트에 있음
+    // Slide : Event
+    // Passing : PlayerController 스크립트에 있음
+    // Attack : PlayerAttackSystem 스크립트에 있음
 
+    public void JumpAnimOn() 
+    {
+        anim.SetBool("Jumping", true);
     }
 
-    public void JumpAnimation() // 2단점프까지 있음
+    public void JumpAnimOff()
     {
-
+        anim.SetBool("Jumping", false);
     }
 
-    public void SlideAnimation()
+    public void SlideAnimOn()
     {
-
+        anim.SetBool("Sliding", true);
     }
 
-    public void PassingObjAnimation() // 랜덤으로 2개 중에 하나 실행
+    public void SlideAnimOff()
     {
-
+        anim.SetBool("Sliding", false);
     }
 
-    public void FirstAttackAnimation()
+    public void PassingObjAnimOn() 
     {
-
+        anim.SetBool("Passing", true);
     }
 
-    public void SecondAttackAnimation()
+    public void PassingObjAnimOff() 
     {
+        anim.SetBool("Passing", false);
+    }
 
+    public void FirstAttackAnimOn()
+    {
+        anim.SetBool("FrAttack", true);
+    }
+
+    public void FirstAttackAnimOff()
+    {
+        anim.SetBool("FrAttack", false);
+    }
+
+    public void SecondAttackAnimOn()
+    {
+        anim.SetBool("ScAttack", true);
+    }
+
+    public void SecondAttackAnimOff()
+    {
+        anim.SetBool("ScAttack", false);
     }
 }
