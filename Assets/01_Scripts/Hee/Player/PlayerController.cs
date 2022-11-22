@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
             PlayerAnimation.Instance.JumpAnimOff();
             // 이단점프 애니메이션 Off 추가
+            PlayerAnimation.Instance.DoubleJumpOff();
         }
     }
 
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isSliding) return;
         if (isPassing) return;
-        if (jumpCount <= 1) return;
+        if (jumpCount <= 0) return;
 
         print("JumpMoment");
 
@@ -147,7 +148,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             // 이단점프
-            
+            PlayerAnimation.Instance.DoubleJumpOn();
         }
 
         jumpCount--;

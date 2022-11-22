@@ -31,12 +31,12 @@ public class PlayerAnimation : MonoBehaviour
 
     public void DoubleJumpOn()
     {
-
+        anim.SetBool("DbJumping", true);
     }
 
     public void DoubleJumpOff()
     {
-
+        anim.SetBool("DbJumping", false);
     }
 
     public void SlideAnimOn()
