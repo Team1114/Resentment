@@ -11,7 +11,6 @@ public class FadeIn : MonoBehaviour
     public List<Image> Imagelist = new List<Image>();
 
     public int listCount = 0;
-    private bool first = true;
 
     private void Start()
     {
@@ -26,29 +25,22 @@ public class FadeIn : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(first)
+            if(Imagelist.Count == listCount)
             {
-                StartCoroutine(FirstFade(0, 1));
-                first = false;
+                for (int i = 0; i < Imagelist.Count; i++)
+                {
+                    Imagelist[i].gameObject.SetActive(false);
+                }
             }
             else
             {
-                if(!first && Imagelist.Count == listCount)
+                if(listCount < Imagelist.Count)
                 {
-                    for (int i = 0; i < Imagelist.Count; i++)
-                    {
-                        Imagelist[i].gameObject.SetActive(false);
-                    }
-                }
-                else
-                {
-                    if(listCount < Imagelist.Count)
-                    {
-                        listCount++;
-                        StartCoroutine(Fade(0, 1));
-                    }
+                    listCount++;
+                    StartCoroutine(Fade(0, 1));
                 }
             }
+            
         }
     }
 
@@ -65,24 +57,6 @@ public class FadeIn : MonoBehaviour
             Color color = Imagelist[listCount-1].color;
             color.a = Mathf.Lerp(start, end, percent);
             Imagelist[listCount-1].color = color;
-
-            yield return null;
-        }
-    }
-
-    IEnumerator FirstFade(float start, float end)
-    {
-        float currentTime = 0.0f;
-        float percent = 0.0f;
-
-        while (percent < 1)
-        {
-            currentTime += Time.deltaTime;
-            percent = currentTime / fadeTime;
-
-            Color color = Imagelist[0].color;
-            color.a = Mathf.Lerp(start, end, percent);
-            Imagelist[0].color = color;
 
             yield return null;
         }
