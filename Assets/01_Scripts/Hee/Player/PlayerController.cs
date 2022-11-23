@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
             if (isPassing) return;
 
             PlayerAnimation.Instance.JumpAnimOff();
-            // 이단점프 애니메이션 Off 추가
             PlayerAnimation.Instance.DoubleJumpOff();
         }
     }
