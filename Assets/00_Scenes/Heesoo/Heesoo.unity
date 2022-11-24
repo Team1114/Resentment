@@ -1454,7 +1454,7 @@ MonoBehaviour:
   isGround: 0
   isObstacle: 0
   isJumpping: 0
-  jumpPower: 5
+  jumpPower: 6.5
   jumpCount: 2
   speed: 13
   isSliding: 0
