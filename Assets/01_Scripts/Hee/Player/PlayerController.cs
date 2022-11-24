@@ -66,24 +66,31 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Ground")) // 땅일 때
             {
                 isGround = true;
-                speed = 10f;
-                jumpPower = 7f; // 인스펙터에서 바꾸면 여기도 수정
+                jumpPower = 8f; // 인스펙터에서 바꾸면 여기도 수정
                 jumpCount = 2;
             }
             else if (!hit.collider.CompareTag("Ground")) // 공중일 때
             {
-                jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
+                jumpPower = 4f; // 인스펙터에서 바꾸면 여기도 수정
                 isGround = false;
-                speed = 7f;
             }
         }
         else // 공중일 때
         {
-            jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
+            jumpPower = 4f; // 인스펙터에서 바꾸면 여기도 수정
             isGround = false;
-            speed = 7f;
         }
+
         isJumpping = !isGround;
+
+        if (isGround)
+        {
+            if (isSliding) return;
+            if (isPassing) return;
+
+            PlayerAnimation.Instance.JumpAnimOff();
+            PlayerAnimation.Instance.DoubleJumpOff();
+        }
     }
 
     void ObstacleCheck()
@@ -111,22 +118,13 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(speed, rb.velocity.y); //moveDir * speed;
-
-        /*if (isRight)
-        {
-            transform.localScale = new Vector3(1, 1, 0);
-        }
-        else if (isRight == false)
-        {
-            transform.localScale = new Vector3(-1, 1, 0);
-        }*/
     }
 
     public void Jump()
     {
         if (isSliding) return;
         if (isPassing) return;
-        if (jumpCount <= 1) return;
+        if (jumpCount <= 0) return;
 
         print("JumpMoment");
 
@@ -137,33 +135,50 @@ public class PlayerController : MonoBehaviour
     {
         isJumpping = true;
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+
+        if (jumpCount == 2)
+        {
+            // 점프
+            PlayerAnimation.Instance.JumpAnimOn();
+        }
+        else
+        {
+            // 이단점프
+            PlayerAnimation.Instance.DoubleJumpOn();
+        }
+
         jumpCount--;
         yield return null;
     }
+
+    Vector2 lastCoSize;
+    Vector2 lastColOffset;
+    bool first = true;
 
     public void Slide()
     {
         Debug.Log("SlideMoment");
 
-        StartCoroutine(SlideCoroutine());
-    }
-
-    IEnumerator SlideCoroutine()
-    {
         isSliding = true;
 
-        Vector2 lastCoSize = col.size; 
-        Vector2 lastColOffset = col.offset; 
+        if (first)
+        {
+            lastCoSize = col.size;
+            lastColOffset = col.offset;
 
-        col.size = colSize;
-        col.offset = colOffset;
+            col.size = colSize;
+            col.offset = colOffset;
+            first = false;
+        }
+    }
 
-        yield return new WaitForSeconds(slidingTime);
-        
-        col.size = lastCoSize;
-        col.offset = lastColOffset;
+    public void SlideFinish()
+    {
+        Debug.Log("SlideFinish");
         
         isSliding = false;
+        col.size = lastCoSize;
+        col.offset = lastColOffset;
     }
 
     public void Pass()
@@ -176,7 +191,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator PassCoroutine()
     {
         isPassing = true;
-
+        PlayerAnimation.Instance.PassingObjAnimOn();
         Vector2 lastCoSize = col.size;
         Vector2 lastColOffset = col.offset;
 
@@ -187,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
         col.size = lastCoSize;
         col.offset = lastColOffset;
-
+        PlayerAnimation.Instance.PassingObjAnimOff();
         isPassing = false;
     }
 }

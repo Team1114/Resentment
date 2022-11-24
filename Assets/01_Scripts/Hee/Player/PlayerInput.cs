@@ -13,11 +13,11 @@ public class PlayerInput : MonoBehaviour
     [Header("Event")]
     public UnityEvent JumpEvent; // 점프
     public UnityEvent SlideEvent; // 슬라이드 
+    public UnityEvent SlideFinishEvent; // 슬라이드 끝
     public UnityEvent PassEvent; // 오브젝트 넘기  
 
     public UnityEvent SwordMeleAttack; // 단검 근접 공격 - 마우스 좌클릭
     public UnityEvent SwordMeleAttackSecond; // 단검 근접 공격 - 마우스 좌클릭 2번째 공격
-    public UnityEvent SwordMeleAttackThird; // 단검 근접 공격 - 마우스 좌클릭 3번째 공격
 
     #endregion
 
@@ -59,11 +59,15 @@ public class PlayerInput : MonoBehaviour
 
     private void GetSlideInput()
     {
-        if (isMoving) return;
+        if (_playerController.isJumpping || _playerController.isPassing) return;
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             SlideEvent?.Invoke();
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            SlideFinishEvent?.Invoke();
         }
     }
 
@@ -93,10 +97,6 @@ public class PlayerInput : MonoBehaviour
             else if (comNoOfClicks == 2)
             {
                 SwordMeleAttackSecond?.Invoke();
-            }
-            else if (comNoOfClicks == 3)
-            {
-                SwordMeleAttackThird?.Invoke();
                 comNoOfClicks = 0;
             }
         }
