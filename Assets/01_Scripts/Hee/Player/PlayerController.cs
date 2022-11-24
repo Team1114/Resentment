@@ -66,22 +66,19 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Ground")) // 땅일 때
             {
                 isGround = true;
-                speed = 10f;
                 jumpPower = 8f; // 인스펙터에서 바꾸면 여기도 수정
                 jumpCount = 2;
             }
             else if (!hit.collider.CompareTag("Ground")) // 공중일 때
             {
-                jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
+                jumpPower = 4f; // 인스펙터에서 바꾸면 여기도 수정
                 isGround = false;
-                speed = 7f;
             }
         }
         else // 공중일 때
         {
-            jumpPower = 5f; // 인스펙터에서 바꾸면 여기도 수정
+            jumpPower = 4f; // 인스펙터에서 바꾸면 여기도 수정
             isGround = false;
-            speed = 7f;
         }
 
         isJumpping = !isGround;
