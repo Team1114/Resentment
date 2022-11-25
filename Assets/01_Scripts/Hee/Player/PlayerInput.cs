@@ -33,6 +33,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        if (UIManager.Instance.EscPanel.activeSelf) return;
         if (Time.time - comLastClickedTime > comMaxComboDelay) comNoOfClicks = 0;
 
         isMoving = MovingCheck();

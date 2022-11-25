@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance.EscPanel.activeSelf) return;
         GroundCheck();
         ObstacleCheck();
         Move();
