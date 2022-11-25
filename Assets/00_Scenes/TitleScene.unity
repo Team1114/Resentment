@@ -476,7 +476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stage1
+  m_text: Chapter1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
   m_sharedMaterial: {fileID: 5204342913577363549, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stage3
+  m_text: Chapter3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
   m_sharedMaterial: {fileID: 5204342913577363549, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
@@ -1134,7 +1134,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2132110183}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1840,7 +1840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stage4
+  m_text: Chapter4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
   m_sharedMaterial: {fileID: 5204342913577363549, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
@@ -2470,7 +2470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stage2
+  m_text: Chapter2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
   m_sharedMaterial: {fileID: 5204342913577363549, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
@@ -2654,7 +2654,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2132110183}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2926,7 +2926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stage5
+  m_text: Chapter5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
   m_sharedMaterial: {fileID: 5204342913577363549, guid: 4a302bf8a2ef4444b8c9c943e8b70b2c, type: 2}
@@ -3033,9 +3033,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1623345856}
   - {fileID: 546417128}
   - {fileID: 1681563429}
+  - {fileID: 1623345856}
   m_Father: {fileID: 1692592239}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3215,7 +3215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6283279645201328044, guid: cd4382bee3a20244bb92600b8d6162d6, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6283279645201328044, guid: cd4382bee3a20244bb92600b8d6162d6, type: 3}
       propertyPath: m_AnchorMax.x
