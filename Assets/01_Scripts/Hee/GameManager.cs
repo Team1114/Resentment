@@ -37,5 +37,9 @@ public class GameManager : MonoBehaviour
     public void GameClear()
     {
         print("GameClear");
+        // 만화 재생
+        // 다음 스테이지 자동 이동
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene($"{int.Parse(sceneName) + 1}");
     }
 }

@@ -448,8 +448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pitchRandomness: 0.2
-  swrodAttack1: {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
-  swrodAttack2: {fileID: 8300000, guid: 80502e18f68bb734b9dded7bb8d2e750, type: 3}
+  swrodAttack1: {fileID: 8300000, guid: 49e9abbdc34dbd44b91c5ca0bbce3a25, type: 3}
+  swrodAttack2: {fileID: 8300000, guid: 976dc605c0f40e948a361671efaa6f7a, type: 3}
 --- !u!1 &1259799294357515931
 GameObject:
   m_ObjectHideFlags: 0
