@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1785413587965864300}
   - component: {fileID: 3104083763836787778}
   m_Layer: 6
-  m_Name: SharpObstacle
+  m_Name: SharpObstacleBB
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

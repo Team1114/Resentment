@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSound : MonoBehaviour
+public class PlayerSound : AudioPlayer
 {
-    // Start is called before the first frame update
-    void Start()
+    public AudioClip swrodAttack1;
+    public AudioClip swrodAttack2;
+
+    public void FirstAttack()
     {
-        
+        PlayClip(swrodAttack1);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SecondAttack()
     {
-        
+        PlayClip(swrodAttack2);
     }
 }
