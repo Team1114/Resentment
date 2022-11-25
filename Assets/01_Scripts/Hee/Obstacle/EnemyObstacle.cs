@@ -17,4 +17,9 @@ public class EnemyObstacle : MonoBehaviour, IObstacleObject
             Crash();
         }
     }
+
+    private void OnDisable()
+    {
+        print("SwordEnemyDie");
+    }
 }

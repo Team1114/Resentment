@@ -22,11 +22,13 @@ public class PlayerAnimation : MonoBehaviour
     public void JumpAnimOn() 
     {
         anim.SetBool("Jumping", true);
+        print("on");
     }
 
     public void JumpAnimOff()
     {
         anim.SetBool("Jumping", false);
+        print("off");
     }
 
     public void DoubleJumpOn()

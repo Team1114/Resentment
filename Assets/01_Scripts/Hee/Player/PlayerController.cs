@@ -67,7 +67,13 @@ public class PlayerController : MonoBehaviour
             {
                 isGround = true;
                 jumpPower = 6.5f; // 인스펙터에서 바꾸면 여기도 수정
-                jumpCount = 2;
+
+                if (jumpCount <= 1)
+                {
+                    jumpCount = 2;
+                    PlayerAnimation.Instance.JumpAnimOff();
+                    PlayerAnimation.Instance.DoubleJumpOff();
+                }
             }
             else if (!hit.collider.CompareTag("Ground")) // 공중일 때
             {
@@ -75,22 +81,13 @@ public class PlayerController : MonoBehaviour
                 isGround = false;
             }
         }
-        else // 공중일 때
+        else
         {
-            jumpPower = 9; // 인스펙터에서 바꾸면 여기도 수정
+            jumpPower = 9f; // 인스펙터에서 바꾸면 여기도 수정
             isGround = false;
         }
 
         isJumpping = !isGround;
-
-        if (isGround)
-        {
-            if (isSliding) return;
-            if (isPassing) return;
-
-            PlayerAnimation.Instance.JumpAnimOff();
-            PlayerAnimation.Instance.DoubleJumpOff();
-        }
     }
 
     void ObstacleCheck()
@@ -124,9 +121,9 @@ public class PlayerController : MonoBehaviour
     {
         if (isSliding) return;
         if (isPassing) return;
-        if (jumpCount <= 0) return;
+        if (jumpCount == 0) return;
 
-        print("JumpMoment");
+        // print("JumpMoment");
 
         StartCoroutine(JumpCotoutine());
     }
@@ -141,14 +138,14 @@ public class PlayerController : MonoBehaviour
             // 점프
             PlayerAnimation.Instance.JumpAnimOn();
         }
-        else
+        else if (jumpCount == 1)
         {
             // 이단점프
             PlayerAnimation.Instance.DoubleJumpOn();
         }
-
+        
+        yield return new WaitForSeconds(0.2f);
         jumpCount--;
-        yield return null;
     }
 
     Vector2 lastCoSize;
@@ -204,5 +201,10 @@ public class PlayerController : MonoBehaviour
         col.offset = lastColOffset;
         PlayerAnimation.Instance.PassingObjAnimOff();
         isPassing = false;
+    }
+
+    public void PlayerStop()
+    {
+        speed = 0;
     }
 }
