@@ -13,7 +13,12 @@ public class PlayerAttackSystem : MonoBehaviour
 
         if (collider != null)
         {
-            if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
+            if (collider.CompareTag("Enemy"))
+            {
+                collider.gameObject.GetComponent<EnemeyController>()?.DieMethod();
+                collider.gameObject.GetComponent<GunEnemyController>()?.DieMethod();
+                Destroy(collider.gameObject); // Enemy Die
+            }
         }
     } 
 
@@ -25,7 +30,12 @@ public class PlayerAttackSystem : MonoBehaviour
 
         if (collider != null)
         {
-            if (collider.CompareTag("Enemy")) Destroy(collider.gameObject); // Enemy Die
+            if (collider.CompareTag("Enemy")) 
+            {
+                collider.gameObject.GetComponent<EnemeyController>()?.DieMethod();
+                collider.gameObject.GetComponent<GunEnemyController>()?.DieMethod();
+                Destroy(collider.gameObject); // Enemy Die
+            }
         }
     }
 

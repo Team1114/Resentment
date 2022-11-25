@@ -22,6 +22,8 @@ public class GunEnemyController : MonoBehaviour
     public UnityEvent TwoStepEvent;
     public UnityEvent ThreeStepEvent;
 
+    public UnityEvent Die;
+
     private void Update()
     {
         if (!GameManager.Instance.Player.activeSelf) return;
@@ -69,5 +71,10 @@ public class GunEnemyController : MonoBehaviour
         {
             GameManager.Instance.GameOver();
         }
+    }
+
+    public void DieMethod()
+    {
+        Die?.Invoke();  
     }
 }

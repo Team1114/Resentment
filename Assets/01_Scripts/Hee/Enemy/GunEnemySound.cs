@@ -6,6 +6,7 @@ public class GunEnemySound : AudioPlayer
 {
     public AudioClip reload;
     public AudioClip shoot;
+    public AudioClip Die;
 
     bool isReloadPlaying = false;
     bool isShootPlaying = true;
@@ -34,5 +35,10 @@ public class GunEnemySound : AudioPlayer
         isShootPlaying = true;
         PlayClip(shoot);
         yield return null;
+    }
+
+    public void DieClipPlay()
+    {
+        PlayClip(Die);
     }
 }

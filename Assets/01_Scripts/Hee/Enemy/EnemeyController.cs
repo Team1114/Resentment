@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemeyController : MonoBehaviour
 {
     public int speed = 5; // 추후 삭제
     Rigidbody2D rb;
     [HideInInspector] public Vector2 dir;
+
+    public UnityEvent Die;
 
     private void Awake()
     {
@@ -48,5 +51,10 @@ public class EnemeyController : MonoBehaviour
     {
         dir.x *= -1;
         transform.localScale = new Vector3(-dir.x, 1, 1);
+    }
+
+    public void DieMethod()
+    {
+        Die?.Invoke();
     }
 }

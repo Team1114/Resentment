@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyObstacle : MonoBehaviour, IObstacleObject
 {
@@ -13,7 +14,6 @@ public class EnemyObstacle : MonoBehaviour, IObstacleObject
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("111");
             Crash();
         }
     }

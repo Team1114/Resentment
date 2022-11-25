@@ -170,6 +170,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Die:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3084861525856610888}
+        m_TargetAssemblyTypeName: GunEnemySound, Assembly-CSharp
+        m_MethodName: DieClipPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3084861525856609717
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +328,7 @@ MonoBehaviour:
   _pitchRandomness: 0.2
   reload: {fileID: 8300000, guid: c08b05550266f4b41b33c3112f97515d, type: 3}
   shoot: {fileID: 8300000, guid: c08b05550266f4b41b33c3112f97515d, type: 3}
+  Die: {fileID: 8300000, guid: f35628aa9cafaa5488cfceb26884f120, type: 3}
 --- !u!1 &3084861526026341455
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +402,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5344962792560499854, guid: 40d92f5b3a54e4e49842b77bdf258d93, type: 3}
+  m_Sprite: {fileID: 6335585012776163348, guid: 6f63e91e958a2f9448925ea8ed4f44ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -452,7 +468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3084861526762722899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: -0.921, z: 0}
+  m_LocalPosition: {x: 0.89, y: -0.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2299581380079453144}
