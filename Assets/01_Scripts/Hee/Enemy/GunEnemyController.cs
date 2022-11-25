@@ -12,6 +12,7 @@ public class GunEnemyController : MonoBehaviour
 
     public GameObject Bullet;
     public Transform bulletPosition;
+    public bool isShooting = false;
 
     public float OneStepDistance = 15f;
     public float TwoStepDistance = 10f;
@@ -23,6 +24,7 @@ public class GunEnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.Player.activeSelf) return;
         float distance = Vector2.Distance(transform.position, GameManager.Instance.Player.transform.position);
         if (distance < OneStepDistance && distance > TwoStepDistance)
         {
@@ -43,12 +45,29 @@ public class GunEnemyController : MonoBehaviour
 
     public void Shooting()
     {
-        Instantiate(Bullet, bulletPosition.position, Quaternion.identity);
+        if (isShooting) return;
+        StartCoroutine(ShootBullet());
     }
 
+    IEnumerator ShootBullet()
+    {
+        isShooting = true;
+
+        Instantiate(Bullet, bulletPosition.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(0.6f);
+    }
 
     private void OnDisable()
     {
         print("GunEnemyDie");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 }
