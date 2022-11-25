@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00_Scenes/Min/Min.unity
     guid: 2ad6299c92d710742b506f40ae72ebb2
+  - enabled: 1
+    path: Assets/00_Scenes/Heesoo/Heesoo 1.unity
+    guid: bcabf05559f01ea418fb302bbf1d2961
   m_configObjects: {}

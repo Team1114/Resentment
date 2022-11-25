@@ -9,8 +9,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private string scenename;
 
     [Header("Btns")]
-    [SerializeField] GameObject contiueBtn;
-    [SerializeField] GameObject newGameBtn;
+    [SerializeField] GameObject startBtn;
     [SerializeField] GameObject settingBtn;
     [SerializeField] GameObject quitBtn;
 
@@ -25,6 +24,9 @@ public class ButtonManager : MonoBehaviour
 
     [Header("Quit")]
     [SerializeField] GameObject QuitQuestion;
+
+    [Header("Start")]
+    [SerializeField] GameObject stageSellect;
 
     #region SettingBtn
     public void SettingBtnOn()
@@ -60,8 +62,19 @@ public class ButtonManager : MonoBehaviour
     }
     #endregion
 
-    public void LoadScene()
+    #region StageSellect
+    public void StageSellectOn()
     {
-        SceneManager.LoadScene(scenename);
+        stageSellect.SetActive(true );
+    }
+    public void StageSellectOff()
+    {
+        stageSellect.SetActive(false);
+    }
+    #endregion
+
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }
