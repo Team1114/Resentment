@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
         isSliding = false;
         col.size = lastCoSize;
         col.offset = lastColOffset;
+        first = true;
     }
 
     public void Pass()
