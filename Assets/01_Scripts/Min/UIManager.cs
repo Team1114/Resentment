@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public TextPanel textPanel;
+    public GameObject EscPanel;
     
     private void Awake()
     {

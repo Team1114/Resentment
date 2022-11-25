@@ -215,7 +215,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SecondMap
+          m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &78627865
@@ -656,7 +656,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Heesoo 1
+          m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &390514740
@@ -1464,7 +1464,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &605723125
@@ -2009,7 +2009,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1217097841
@@ -2372,7 +2372,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1392990310
@@ -2577,7 +2577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120556a8a7fb9e64f9f8f4252ca2cb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenename: 
   startBtn: {fileID: 653510528}
   settingBtn: {fileID: 2132110182}
   quitBtn: {fileID: 0}
@@ -2586,6 +2585,7 @@ MonoBehaviour:
   resolution: {fileID: 265685420}
   QuitQuestion: {fileID: 0}
   stageSellect: {fileID: 1336635694}
+  InGameUI: {fileID: 0}
 --- !u!4 &1602744177
 Transform:
   m_ObjectHideFlags: 0
