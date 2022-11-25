@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    //Load Scene
-    [SerializeField] private string scenename;
+    InGameESC _inGameESC;
 
     [Header("Btns")]
     [SerializeField] GameObject startBtn;
@@ -27,6 +26,14 @@ public class ButtonManager : MonoBehaviour
 
     [Header("Start")]
     [SerializeField] GameObject stageSellect;
+
+    [Header("InGameUI")]
+    [SerializeField] GameObject InGameUI;
+
+    private void Start()
+    {
+        _inGameESC = GameObject.Find("InGameEscManager").GetComponent<InGameESC>();
+    }
 
     #region SettingBtn
     public void SettingBtnOn()
@@ -76,5 +83,12 @@ public class ButtonManager : MonoBehaviour
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    public void InGameUIOff()
+    {
+        _inGameESC.escUI.gameObject.SetActive(false);
+        Time.timeScale = 1;
+        _inGameESC.canUIOn = true;
     }
 }
