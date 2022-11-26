@@ -100,7 +100,7 @@ MonoBehaviour:
   isShooting: 0
   OneStepDistance: 15
   TwoStepDistance: 11
-  ThreeStepDistance: 7
+  ThreeStepDistance: 9
   OneStepEvent:
     m_PersistentCalls:
       m_Calls:
