@@ -47,6 +47,19 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = transform.GetComponentInChildren<BoxCollider2D>();
         anim = GetComponentInChildren<Animator>();
+        StartCoroutine(PlayerDieCheck());
+    }
+
+    IEnumerator PlayerDieCheck()
+    {
+        float lastX = transform.position.x;
+        yield return new WaitForSeconds(0.1f);
+        if (lastX == transform.position.x)
+        {
+            print("PlayerIsStop");
+            GameManager.Instance.GameOver();
+        }
+        StartCoroutine(PlayerDieCheck());
     }
 
     void Update()
@@ -124,7 +137,7 @@ public class PlayerController : MonoBehaviour
         if (isPassing) return;
         if (jumpCount == 0) return;
 
-        // print("JumpMoment");
+        print("JumpMoment");
 
         StartCoroutine(JumpCotoutine());
     }
@@ -145,7 +158,7 @@ public class PlayerController : MonoBehaviour
             PlayerAnimation.Instance.DoubleJumpOn();
         }
         
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         jumpCount--;
     }
 

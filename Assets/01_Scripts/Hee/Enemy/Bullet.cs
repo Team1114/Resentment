@@ -22,5 +22,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             GameManager.Instance.GameOver();
         }
+        if (collision.gameObject)
+        {
+            Destroy(gameObject);
+        }
     }
 }
