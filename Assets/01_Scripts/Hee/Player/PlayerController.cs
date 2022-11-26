@@ -93,12 +93,20 @@ public class PlayerController : MonoBehaviour
             {
                 jumpPower = 9f; // 인스펙터에서 바꾸면 여기도 수정
                 isGround = false;
+                if (isSliding)
+                {
+                    SlideFinish();
+                }
             }
         }
         else
         {
             jumpPower = 9f; // 인스펙터에서 바꾸면 여기도 수정
             isGround = false;
+            if (isSliding)
+            {
+                SlideFinish();
+            }
         }
 
         isJumpping = !isGround;
