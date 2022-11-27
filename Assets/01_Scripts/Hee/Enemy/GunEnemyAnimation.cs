@@ -11,6 +11,11 @@ public class GunEnemyAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void EnemyDie()
+    {
+        anim.SetTrigger("Die");
+    }
+
     public void OneStepOn()
     {
         anim.SetBool("OneStep", true);

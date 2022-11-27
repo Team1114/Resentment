@@ -22,7 +22,7 @@ public class GunEnemyController : MonoBehaviour
     public UnityEvent TwoStepEvent;
     public UnityEvent ThreeStepEvent;
 
-    public UnityEvent Die;
+    public UnityEvent DiePlaced;
 
     private void Update()
     {
@@ -73,8 +73,9 @@ public class GunEnemyController : MonoBehaviour
         }
     }
 
-    public void DieMethod()
+    public void Die()
     {
-        Die?.Invoke();  
+        DiePlaced?.Invoke();
+        
     }
 }

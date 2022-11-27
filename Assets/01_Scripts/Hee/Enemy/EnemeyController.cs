@@ -5,15 +5,18 @@ using UnityEngine.Events;
 
 public class EnemeyController : MonoBehaviour
 {
+    Animator anim;
+
     public int speed = 5; // 추후 삭제
     Rigidbody2D rb;
     [HideInInspector] public Vector2 dir;
 
-    public UnityEvent Die;
+    public UnityEvent DiePlaced;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -53,8 +56,10 @@ public class EnemeyController : MonoBehaviour
         transform.localScale = new Vector3(-dir.x, 1, 1);
     }
 
-    public void DieMethod()
+    public void Die()
     {
-        Die?.Invoke();
+        DiePlaced?.Invoke();
+        anim.SetTrigger("Die");
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 }
