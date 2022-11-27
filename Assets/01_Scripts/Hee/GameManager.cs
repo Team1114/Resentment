@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (first) yield break;
         first = true;
+        Player.GetComponent<PlayerController>().PlayerStop();
         PlayerAnimation.Instance.Die();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene($"{SceneManager.GetActiveScene().name}");
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         if (first) yield break;
         first = true;
-        PlayerAnimation.Instance.Die();
+        Player.GetComponent<PlayerController>().PlayerStop();
         yield return new WaitForSeconds(1f);
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene($"{int.Parse(sceneName) + 1}");
