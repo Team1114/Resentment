@@ -29,11 +29,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    bool first = false;
+
     public void GameOver()
     {
         print("GameOver");
-        // Respawn
-        SceneManager.LoadScene($"{SceneManager.GetActiveScene().name}");
+        StartCoroutine(Replay());
     }
 
     public void GameClear()
@@ -41,6 +42,24 @@ public class GameManager : MonoBehaviour
         print("GameClear");
         // 만화 재생
         // 다음 스테이지 자동 이동
+        StartCoroutine(NextScene());
+    }
+
+    IEnumerator Replay()
+    {
+        if (first) yield break;
+        first = true;
+        PlayerAnimation.Instance.Die();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene($"{SceneManager.GetActiveScene().name}");
+    }
+
+    IEnumerator NextScene()
+    {
+        if (first) yield break;
+        first = true;
+        PlayerAnimation.Instance.Die();
+        yield return new WaitForSeconds(1f);
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene($"{int.Parse(sceneName) + 1}");
     }

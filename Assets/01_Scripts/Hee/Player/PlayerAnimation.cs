@@ -80,4 +80,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim.SetBool("ScAttack", false);
     }
+
+    public void Die()
+    {
+        anim.SetTrigger("Die");
+    }
 }

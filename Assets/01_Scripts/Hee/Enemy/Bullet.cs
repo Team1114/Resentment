@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject); // PlayerDie
+            
             Destroy(gameObject);
             GameManager.Instance.GameOver();
         }
