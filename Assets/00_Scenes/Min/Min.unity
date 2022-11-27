@@ -384,6 +384,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843682543}
     m_Modifications:
+    - target: {fileID: 899049612530175974, guid: cd4382bee3a20244bb92600b8d6162d6, type: 3}
+      propertyPath: audioSlider
+      value: 
+      objectReference: {fileID: 903376535}
     - target: {fileID: 6283279645201328044, guid: cd4382bee3a20244bb92600b8d6162d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -938,6 +942,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843682542}
   m_CullTransparentMesh: 1
+--- !u!114 &903376535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 641706416226734495, guid: cd4382bee3a20244bb92600b8d6162d6, type: 3}
+  m_PrefabInstance: {fileID: 318429877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &938631003
 GameObject:
   m_ObjectHideFlags: 0

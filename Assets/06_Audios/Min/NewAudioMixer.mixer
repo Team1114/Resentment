@@ -63,11 +63,11 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 98a1a4efc45485b43b6a75fa397065dc
+  - guid: 36f56e25e6fa9724aa0d2f099144bbdb
     name: BGM
-  - guid: 15e6105e1aff2cd49ab281446d5c2764
+  - guid: 86e533c19b5c10f459840212e6fa58ee
     name: FX
-  - guid: 497973df473ffd54d87b948f3665a3c4
+  - guid: f03d4e74a6ca0b64eb743498aad015f2
     name: Master
   m_AudioMixerGroupViews:
   - guids:
@@ -121,7 +121,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: b342fac2fb31da4478fbd217f6fb8de1
-  m_FloatValues: {}
+  m_FloatValues:
+    86e533c19b5c10f459840212e6fa58ee: 0.04171297
   m_TransitionOverrides: {}
 --- !u!243 &1034917151186690800
 AudioMixerGroupController:
