@@ -234,6 +234,8 @@ public class PlayerController : MonoBehaviour
     public void PlayerStop()
     {
         speed = 0;
+        rb.bodyType = RigidbodyType2D.Static;
+        col.isTrigger = true;
         GetComponent<PlayerInput>().enabled = false;
         GetComponent<PlayerController>().enabled = false;
     }

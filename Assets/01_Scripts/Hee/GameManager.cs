@@ -74,9 +74,9 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             Time.timeScale -= 0.1f;
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.01f);
 
-            if (Time.timeScale <= 0.2f)
+            if (Time.timeScale <= 0.34f)
             {
                 StartCoroutine(TimeUp());
                 StopCoroutine(TimeDown());
