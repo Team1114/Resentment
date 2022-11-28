@@ -229,5 +229,6 @@ public class PlayerController : MonoBehaviour
     public void PlayerStop()
     {
         speed = 0;
+        GetComponent<PlayerController>().enabled = false;
     }
 }
