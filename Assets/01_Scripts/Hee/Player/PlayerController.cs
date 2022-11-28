@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Ground")) // 땅일 때
             {
+                // CameraManager.Instance.RunSize();
                 isGround = true;
                 jumpPower = 6.5f; // 인스펙터에서 바꾸면 여기도 수정
 
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
                 if (isSliding)
                 {
                     SlideFinish();
+                    PlayerAnimation.Instance.SlideAnimOff();
                 }
             }
         }
@@ -106,6 +108,7 @@ public class PlayerController : MonoBehaviour
             if (isSliding)
             {
                 SlideFinish();
+                PlayerAnimation.Instance.SlideAnimOff();
             }
         }
 
@@ -159,11 +162,13 @@ public class PlayerController : MonoBehaviour
         {
             // 점프
             PlayerAnimation.Instance.JumpAnimOn();
+            // CameraManager.Instance.JumpSize();
         }
         else if (jumpCount == 1)
         {
             // 이단점프
             PlayerAnimation.Instance.DoubleJumpOn();
+            // CameraManager.Instance.DoubleJumpSize();
         }
         
         yield return new WaitForSeconds(0.05f);
