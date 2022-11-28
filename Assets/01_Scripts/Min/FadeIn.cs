@@ -25,10 +25,15 @@ public class FadeIn : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(listCount != 0)
+            if(listCount > 0)
             {
-                Imagelist[listCount - 1].gameObject.SetActive(false);
+                Imagelist[listCount].gameObject.SetActive(false);
             }
+            else if(listCount == 0)
+            {
+                Imagelist[0].gameObject.SetActive(false);
+            }
+
             if (Imagelist.Count == listCount)
             {
                 for (int i = 0; i < Imagelist.Count; i++)
@@ -41,7 +46,7 @@ public class FadeIn : MonoBehaviour
                 if(listCount < Imagelist.Count)
                 {
                     listCount++;
-                    StartCoroutine(Fade(0, 1));
+                    StartCoroutine(Fade(1, 0));
                 }
             }
             
