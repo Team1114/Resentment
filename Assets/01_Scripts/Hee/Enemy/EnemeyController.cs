@@ -61,5 +61,6 @@ public class EnemeyController : MonoBehaviour
         DiePlaced?.Invoke();
         anim.SetTrigger("Die");
         rb.bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<EnemeyController>().enabled = false;
     }
 }

@@ -76,6 +76,6 @@ public class GunEnemyController : MonoBehaviour
     public void Die()
     {
         DiePlaced?.Invoke();
-        
+        GetComponent<GunEnemyController>().enabled = false;
     }
 }
