@@ -2773,9 +2773,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cmVcam: {fileID: 634641086}
-  _amplitude: 3
-  _frequency: 0.5
-  _duration: 0.2
+  _amplitude: 1
+  _frequency: 0.3
+  _duration: 0.1
 --- !u!1001 &675803132
 PrefabInstance:
   m_ObjectHideFlags: 0
