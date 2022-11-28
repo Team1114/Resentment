@@ -77,6 +77,7 @@ public class GunEnemyController : MonoBehaviour
     {
         DiePlaced?.Invoke();
         GetComponent<GunEnemyController>().enabled = false;
+        GameManager.Instance.TimeScaleDownUp();
         CameraManager.Instance.CameraShake();
     }
 }

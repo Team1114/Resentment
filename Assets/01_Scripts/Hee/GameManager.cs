@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     public void GameClear()
     {
         print("GameClear");
-        // 만화 재생
         // 다음 스테이지 자동 이동
         StartCoroutine(NextScene());
     }
@@ -62,6 +61,41 @@ public class GameManager : MonoBehaviour
         Player.GetComponent<PlayerController>().PlayerStop();
         yield return new WaitForSeconds(1f);
         string sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene($"{int.Parse(sceneName) + 1}");
+            SceneManager.LoadScene($"{int.Parse(sceneName) + 1}");
+    }
+
+    public void TimeScaleDownUp()
+    {
+        StartCoroutine(TimeDown());
+    }
+
+    IEnumerator TimeDown()
+    {
+        while (true)
+        {
+            Time.timeScale -= 0.1f;
+            yield return new WaitForSeconds(0.001f);
+
+            if (Time.timeScale <= 0.2f)
+            {
+                StartCoroutine(TimeUp());
+                StopCoroutine(TimeDown());
+                yield break;
+            }
+        }
+    }
+
+    IEnumerator TimeUp()
+    {
+        while (true)
+        {
+            Time.timeScale += 0.1f;
+            yield return new WaitForSeconds(0.001f);
+
+            if (Time.timeScale >= 0.99f)
+            {
+                yield break;
+            }
+        }
     }
 }

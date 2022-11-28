@@ -7,50 +7,6 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    #region 카메라 사이즈 크고작게
-
-    /*public void RunSize()
-    {
-        StartCoroutine(SizeChange(7));
-    }
-
-    public void JumpSize()
-    {
-        StartCoroutine(SizeChange(9));
-    }
-
-    public void DoubleJumpSize()
-    {
-        StartCoroutine(SizeChange(11));
-    }
-
-    IEnumerator SizeChange(int changeToSize)
-    {
-        float nowSize = cam.m_Lens.OrthographicSize;
-        
-        while (true)
-        {
-            if (nowSize > changeToSize)
-            {
-                cam.m_Lens.OrthographicSize -= 0.1f;
-                if (nowSize <= changeToSize) yield return false;
-            }
-            else if (nowSize < changeToSize)
-            {
-                cam.m_Lens.OrthographicSize += 0.1f;
-                if (nowSize >= changeToSize) yield return false;
-            }
-            yield return new WaitForSeconds(0.01f);
-        }
-    }*/
-
-    #endregion
-
     [SerializeField]
     private CinemachineVirtualCamera _cmVcam;
     [SerializeField]
@@ -61,6 +17,11 @@ public class CameraManager : MonoBehaviour
     private float _duration = 0.1f;
 
     private CinemachineBasicMultiChannelPerlin _noise;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {

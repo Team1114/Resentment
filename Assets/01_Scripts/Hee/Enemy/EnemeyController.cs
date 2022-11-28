@@ -62,6 +62,7 @@ public class EnemeyController : MonoBehaviour
         anim.SetTrigger("Die");
         rb.bodyType = RigidbodyType2D.Kinematic;
         GetComponent<EnemeyController>().enabled = false;
+        GameManager.Instance.TimeScaleDownUp();
         CameraManager.Instance.CameraShake();
     }
 }
