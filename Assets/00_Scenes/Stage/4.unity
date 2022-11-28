@@ -910,7 +910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236025992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 299.38, y: 49.95, z: -8.212687}
+  m_LocalPosition: {x: 204.06, y: 62.289997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 329009826}
@@ -1064,7 +1064,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.11774655, g: 0.12491102, b: 0.13207549, a: 0}
+  m_BackGroundColor: {r: 0.17354928, g: 0.1819548, b: 0.18867922, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1472,13 +1472,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329009825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -95.2, y: 12.3, z: -1.7873132}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 236025993}
   - {fileID: 1789862973}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &332149390 stripped
 Transform:
@@ -3759,7 +3759,7 @@ Transform:
   - {fileID: 1382989205}
   - {fileID: 3464662620030370428}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &897607337
 PrefabInstance:
@@ -3919,7 +3919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152755389731123740, guid: ad1c346be67bd644e939233e7221c6e5, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7152755389731123740, guid: ad1c346be67bd644e939233e7221c6e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6683,7 +6683,7 @@ Transform:
   - {fileID: 816714342}
   - {fileID: 1548141959}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1512515690
 PrefabInstance:
@@ -7687,15 +7687,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 199.78
+      value: 199.66
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 59.83
+      value: 59.87
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7732,6 +7732,14 @@ PrefabInstance:
     - target: {fileID: 1259799294139826836, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259799294205468157, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
+      propertyPath: NormalAttackBoxSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259799294205468157, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
+      propertyPath: NormalAttackBoxSize.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
@@ -7915,7 +7923,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789862972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 299.38, y: 49.95, z: -8.212687}
+  m_LocalPosition: {x: 204.06, y: 62.289997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 628564604}
@@ -9628,6 +9636,7 @@ MonoBehaviour:
   settingBtn: {fileID: 0}
   quitBtn: {fileID: 0}
   howToPlayBtn: {fileID: 0}
+  Cartoon: {fileID: 0}
   settingMenu: {fileID: 1554645749}
   background: {fileID: 1725513930}
   resolution: {fileID: 134391286}

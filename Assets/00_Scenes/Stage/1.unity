@@ -2139,7 +2139,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.13550197, g: 0.13821003, b: 0.3301887, a: 0}
+  m_BackGroundColor: {r: 0.1764706, g: 0.18431373, b: 0.19215687, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2180,7 +2180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 62.5, y: -7.680001, z: -8.212687}
+  m_LocalPosition: {x: 61.6, y: -7.8800006, z: -8.212687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 139727784}
@@ -2736,7 +2736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634641085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 62.5, y: -7.680001, z: -8.212687}
+  m_LocalPosition: {x: 61.6, y: -7.8800006, z: -8.212687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 133124454}
@@ -7158,6 +7158,7 @@ MonoBehaviour:
   settingBtn: {fileID: 0}
   quitBtn: {fileID: 0}
   howToPlayBtn: {fileID: 0}
+  Cartoon: {fileID: 0}
   settingMenu: {fileID: 117807583}
   background: {fileID: 117807582}
   resolution: {fileID: 117807581}
@@ -7553,11 +7554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.1
+      value: -38
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826832, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7601,6 +7602,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294139826836, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259799294205468157, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
+      propertyPath: NormalAttackBoxSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259799294205468157, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
+      propertyPath: NormalAttackBoxSize.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
