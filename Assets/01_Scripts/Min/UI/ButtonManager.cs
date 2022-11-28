@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] GameObject settingBtn;
     [SerializeField] GameObject quitBtn;
     [SerializeField] GameObject howToPlayBtn;
+    [SerializeField] GameObject Cartoon;
 
     [Header("SettingBtns")]
     [SerializeField] GameObject settingMenu;
@@ -102,5 +103,9 @@ public class ButtonManager : MonoBehaviour
     public void HowToPlayBtnoff()
     {
         howToPlayBtn.SetActive(false);
+    }
+    public void CartoonOn()
+    {
+        Cartoon.SetActive(true);
     }
 }
