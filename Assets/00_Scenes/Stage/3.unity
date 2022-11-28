@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 125414522}
   - component: {fileID: 125414525}
   - component: {fileID: 125414524}
-  - component: {fileID: 125414523}
+  - component: {fileID: 125414526}
   m_Layer: 0
   m_Name: FollowCam
   m_TagString: Untagged
@@ -998,22 +998,6 @@ Transform:
   m_Father: {fileID: 1436619900}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &125414523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125414521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fffdc8fee1236459da3eb2fbec0957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cmVcam: {fileID: 125414525}
-  _amplitude: 3
-  _frequency: 0.5
-  _duration: 0.2
 --- !u!114 &125414524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,6 +1050,22 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1733557077}
+--- !u!114 &125414526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125414521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fffdc8fee1236459da3eb2fbec0957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cmVcam: {fileID: 125414525}
+  _amplitude: 0.2
+  _frequency: 0.1
+  _duration: 0.05
 --- !u!4 &128491606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7666795411480541685, guid: bd38ff8febacab047b03503193e3cef6, type: 3}
@@ -3475,11 +3475,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294205468157, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: NormalAttackBoxSize.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1259799294205468157, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
       propertyPath: NormalAttackBoxSize.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c298d465b4dc314db8424b243aff8be, type: 3}
@@ -14350,7 +14350,7 @@ Transform:
   - {fileID: 421580577}
   - {fileID: 2121714338}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1790501972
 PrefabInstance:
