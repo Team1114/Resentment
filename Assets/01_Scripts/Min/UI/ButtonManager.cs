@@ -11,6 +11,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] GameObject startBtn;
     [SerializeField] GameObject settingBtn;
     [SerializeField] GameObject quitBtn;
+    [SerializeField] GameObject howToPlayBtn;
 
     [Header("SettingBtns")]
     [SerializeField] GameObject settingMenu;
@@ -29,6 +30,8 @@ public class ButtonManager : MonoBehaviour
 
     [Header("InGameUI")]
     [SerializeField] GameObject InGameUI;
+
+    
 
     private void Start()
     {
@@ -90,5 +93,14 @@ public class ButtonManager : MonoBehaviour
         _inGameESC.escUI.gameObject.SetActive(false);
         Time.timeScale = 1;
         _inGameESC.canUIOn = true;
+    }
+
+    public void HowToPlayBtnOn()
+    {
+        howToPlayBtn.SetActive(true);
+    }
+    public void HowToPlayBtnoff()
+    {
+        howToPlayBtn.SetActive(false);
     }
 }
