@@ -1063,9 +1063,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cmVcam: {fileID: 125414525}
-  _amplitude: 0.2
-  _frequency: 0.1
-  _duration: 0.05
+  _amplitude: 0.1
+  _frequency: 0.02
+  _duration: 0.02
 --- !u!4 &128491606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7666795411480541685, guid: bd38ff8febacab047b03503193e3cef6, type: 3}

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player;
 
+    public float currentTimeScale;
+
     private void Awake()
     {
         Time.timeScale = 1;
@@ -27,6 +29,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(ex.Message);
         }
+    }
+
+    private void Update()
+    {
+        currentTimeScale = Time.timeScale;
     }
 
     bool first = false;
@@ -71,12 +78,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TimeDown()
     {
+        print("TimeDown");
         while (true)
         {
             Time.timeScale -= 0.1f;
             yield return new WaitForSeconds(0.01f);
 
-            if (Time.timeScale <= 0.34f)
+            if (Time.timeScale <= 0.35f)
             {
                 StartCoroutine(TimeUp());
                 StopCoroutine(TimeDown());
@@ -87,12 +95,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TimeUp()
     {
+        print("TimeUP");
         while (true)
         {
             Time.timeScale += 0.1f;
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.002f);
 
-            if (Time.timeScale >= 0.99f)
+            if (Time.timeScale >= 0.98f)
             {
                 yield break;
             }
