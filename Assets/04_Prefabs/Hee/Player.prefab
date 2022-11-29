@@ -261,7 +261,7 @@ MonoBehaviour:
   colSize: {x: 0.7, y: 0.8}
   colOffset: {x: 0, y: -0.83}
   isPassing: 0
-  passingTime: 0.3
+  passingTime: 0.25
 --- !u!1 &1259799294205468158
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalAttackBoxPosition: {fileID: 1259799295978240723}
-  NormalAttackBoxSize: {x: 0, y: 0}
+  NormalAttackBoxSize: {x: 0.5, y: 0.5}
 --- !u!1 &1259799294238562785
 GameObject:
   m_ObjectHideFlags: 0

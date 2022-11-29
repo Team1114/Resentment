@@ -86,14 +86,24 @@ public class GameManager : MonoBehaviour
 
             if (Time.timeScale <= 0.35f)
             {
-                StartCoroutine(TimeUp());
+                // StartCoroutine(TimeUp());
                 StopCoroutine(TimeDown());
-                yield break;
+
+                while (true)
+                {
+                    Time.timeScale += 0.1f;
+                    yield return new WaitForSeconds(0.002f);
+
+                    if (Time.timeScale >= 0.98f)
+                    {
+                        yield break;
+                    }
+                }
             }
         }
     }
 
-    IEnumerator TimeUp()
+    /*IEnumerator TimeUp()
     {
         print("TimeUP");
         while (true)
@@ -106,5 +116,5 @@ public class GameManager : MonoBehaviour
                 yield break;
             }
         }
-    }
+    }*/
 }

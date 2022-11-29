@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator PlayerDieCheck()
     {
         float lastX = transform.position.x;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         if (lastX == transform.position.x)
         {
             print("PlayerIsStop");
@@ -162,13 +162,13 @@ public class PlayerController : MonoBehaviour
         {
             // 점프
             PlayerAnimation.Instance.JumpAnimOn();
-            // CameraManager.Instance.JumpSize();
+            CameraManager.Instance.SizeUp(8f);
         }
         else if (jumpCount == 1)
         {
             // 이단점프
             PlayerAnimation.Instance.DoubleJumpOn();
-            // CameraManager.Instance.DoubleJumpSize();
+            CameraManager.Instance.SizeUp(9f);
         }
         
         yield return new WaitForSeconds(0.05f);
