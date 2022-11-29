@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!hit.collider.CompareTag("Ground")) // 공중일 때
             {
-                jumpPower = 9f; // 인스펙터에서 바꾸면 여기도 수정
+                jumpPower = 7f; // 인스펙터에서 바꾸면 여기도 수정
                 isGround = false;
                 if (isSliding)
                 {
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            jumpPower = 9f; // 인스펙터에서 바꾸면 여기도 수정
+            jumpPower = 7f; // 인스펙터에서 바꾸면 여기도 수정
             isGround = false;
             if (isSliding)
             {
