@@ -82,12 +82,14 @@ public class PlayerController : MonoBehaviour
                 // CameraManager.Instance.RunSize();
                 isGround = true;
                 jumpPower = 6.5f; // 인스펙터에서 바꾸면 여기도 수정
+                // 
 
                 if (jumpCount <= 1)
                 {
                     jumpCount = 2;
                     PlayerAnimation.Instance.JumpAnimOff();
                     PlayerAnimation.Instance.DoubleJumpOff();
+                    CameraManager.Instance.SizeDown(7f);
                 }
             }
             else if (!hit.collider.CompareTag("Ground")) // 공중일 때

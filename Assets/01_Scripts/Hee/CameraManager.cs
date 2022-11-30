@@ -20,6 +20,8 @@ public class CameraManager : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin _noise;
 
+    public float realSize;
+
     private void Awake()
     {
         Instance = this;
@@ -28,6 +30,11 @@ public class CameraManager : MonoBehaviour
     private void OnEnable()
     {
         _noise = _cmVcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>(); // Noise 제어
+    }
+
+    private void Update()
+    {
+        realSize = _cmVcam.m_Lens.OrthographicSize;
     }
 
     #region CameraShaking
@@ -63,26 +70,32 @@ public class CameraManager : MonoBehaviour
     IEnumerator ChangeSize(float size)
     {
         int sign = 1;
-        float currentSize = _cmVcam.m_Lens.OrthographicSize;
+        // float currentSize = _cmVcam.m_Lens.OrthographicSize;
 
-        if (size <= currentSize)
+        if (size < realSize)
         {
-            size = -1;
+            sign = -1;
         }
-        else
+        else if (size > realSize)
         {
-            size = 1;
+            sign = 1;
         }
 
         while (true)
         {
-            if (currentSize <= size & sign == -1)
+            if (sign == 1) // 위로
             {
-                yield break;
+                if (realSize >= size)
+                {
+                    yield break;
+                }
             }
-            else if (currentSize >= size & sign == 1)
+            else if (sign == -1) // 아래로
             {
-                yield break;
+                if (realSize <= size)
+                {
+                    yield break;
+                }
             }
 
             _cmVcam.m_Lens.OrthographicSize += 0.1f * sign;
