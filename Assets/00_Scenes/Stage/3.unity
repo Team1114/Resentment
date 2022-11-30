@@ -1064,8 +1064,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cmVcam: {fileID: 125414525}
   _amplitude: 0.1
-  _frequency: 0.2
-  _duration: 0.1
+  _frequency: 0.02
+  _duration: 0.01
+  realSize: 0
 --- !u!4 &128491606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7666795411480541685, guid: bd38ff8febacab047b03503193e3cef6, type: 3}
@@ -6912,7 +6913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6483141743289341757, guid: 9ab4bbc6b0e35534faa3a19819480aa2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 485.52
+      value: 486.45
       objectReference: {fileID: 0}
     - target: {fileID: 6483141743289341757, guid: 9ab4bbc6b0e35534faa3a19819480aa2, type: 3}
       propertyPath: m_LocalPosition.y

@@ -71,6 +71,7 @@ public class CameraManager : MonoBehaviour
     {
         int sign = 1;
         // float currentSize = _cmVcam.m_Lens.OrthographicSize;
+        if (size == 7 && realSize <= 6.999f) yield break;
 
         if (size < realSize)
         {
@@ -99,7 +100,7 @@ public class CameraManager : MonoBehaviour
             }
 
             _cmVcam.m_Lens.OrthographicSize += 0.1f * sign;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
