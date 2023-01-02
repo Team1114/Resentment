@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
                     jumpCount = 2;
                     PlayerAnimation.Instance.JumpAnimOff();
                     PlayerAnimation.Instance.DoubleJumpOff();
-                    CameraManager.Instance.SizeDown(7f);
+                    // CameraManager.Instance.SizeDown(7f);
                 }
             }
             else if (!hit.collider.CompareTag("Ground")) // 공중일 때
@@ -164,13 +164,13 @@ public class PlayerController : MonoBehaviour
         {
             // 점프
             PlayerAnimation.Instance.JumpAnimOn();
-            CameraManager.Instance.SizeUp(8f);
+            // CameraManager.Instance.SizeUp(8f);
         }
         else if (jumpCount == 1)
         {
             // 이단점프
             PlayerAnimation.Instance.DoubleJumpOn();
-            CameraManager.Instance.SizeUp(9f);
+            // CameraManager.Instance.SizeUp(9f);
         }
         
         yield return new WaitForSeconds(0.05f);
