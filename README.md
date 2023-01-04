@@ -1,6 +1,5 @@
-#### Resentment
+### Resentment
 
-<Resentment>
  <br/>
  
 # 프로젝트 소개
