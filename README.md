@@ -1,6 +1,6 @@
 #### Resentment
 
-<Resebtnebt>
+<Resentment>
  <br/>
  
 # 프로젝트 소개
@@ -14,7 +14,8 @@
 임채성: 2D Pixel Asset 제작
 ```
 이 게임의 모든 Sprite는 자체제작입니다.
-<br/>
+ 
+  <br/>
 
  
 # 게임 소개
