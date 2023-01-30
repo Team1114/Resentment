@@ -27,6 +27,6 @@
  
  
 # 참고자료 (링크)
-- [게임 소개 영상] (https://youtu.be/D8Mh2A8plhM)
-- [플레이 영상] (https://youtu.be/EnfZvrFYPWA)
+- [게임 소개 영상](https://youtu.be/D8Mh2A8plhM)
+- [플레이 영상](https://youtu.be/EnfZvrFYPWA)
  
